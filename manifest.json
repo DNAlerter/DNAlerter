@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Page Words Checker",
+  "version": "1.0",
+  "description": "Page checker",
+  "web_accessible_resources": [
+    {
+      "resources": ["is_threat"],
+	  "matches": ["<all_urls>"]
+	}
+  ],
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
