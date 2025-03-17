@@ -11,7 +11,23 @@
 #define WM_TRAYNOTIFY (WM_USER + 1)
 #define IDM_EXIT 1000
 
-int startup() {
+std::atomic<bool> running(true);
+HWND hwnd;
+
+/*!
+\file code.cpp
+\brief **Код для определения профиля сети**
+
+Открывает реестр Windows и проверяет тип сети, к которой выполнялось последнее подключение.
+*/
+
+
+
+/*!
+Добавляет путь к программе в список автозагрузки windows
+*/
+int startup()
+{
     wchar_t path[MAX_PATH];
     GetModuleFileNameW(NULL, path, MAX_PATH);
     std::wstring progPath = path;
@@ -34,20 +50,19 @@ int startup() {
     return 0;
 }
 
-
-std::atomic<bool> running(true);
-HWND hwnd;
-
-// Обработчик сообщений окна
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+/*!
+Фукция для выключения программы, если нажата кнопка "Выключить"
+*/ 
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
+{
     switch (msg) {
         case WM_TRAYNOTIFY:
-            if (lParam == WM_RBUTTONUP) { // Правая кнопка мыши
+            if (lParam == WM_RBUTTONUP) {
                 POINT pt;
                 GetCursorPos(&pt);
                 HMENU hMenu = CreatePopupMenu();
                 AppendMenuW(hMenu, MF_STRING, IDM_EXIT, L"Выключить");
-                SetForegroundWindow(hwnd); // Для корректного отображения меню
+                SetForegroundWindow(hwnd);
                 TrackPopupMenu(hMenu, TPM_RIGHTALIGN | TPM_BOTTOMALIGN | TPM_RIGHTBUTTON,
                                pt.x, pt.y, 0, hwnd, NULL);
                 DestroyMenu(hMenu);
@@ -69,8 +84,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     return 0;
 }
 
-// Настройка системного трея
-void InitTray(HWND hwnd) {
+
+
+/*!
+Создание иконки на панели задач при запуске программы
+*/ 
+void InitTray(HWND hwnd) 
+{
     NOTIFYICONDATAW nid = {0};
     nid.cbSize = sizeof(NOTIFYICONDATA);
     nid.hWnd = hwnd;
@@ -82,8 +102,13 @@ void InitTray(HWND hwnd) {
     Shell_NotifyIconW(NIM_ADD, &nid);
 }
 
-// Удаление иконки из трея при выходе
-void RemoveTray(HWND hwnd) {
+
+
+/*!
+Удаление иконки на панели задач при выключении программы
+*/ 
+void RemoveTray(HWND hwnd) 
+{
     NOTIFYICONDATA nid = {0};
     nid.cbSize = sizeof(NOTIFYICONDATA);
     nid.hWnd = hwnd;
@@ -100,8 +125,12 @@ void RemoveTray(HWND hwnd) {
 
 
 
-
-std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day, int hour, int minute, int second) {
+/*!
+Получает на вход год, месяц, день, час, минуту и секунду в формате числа \n
+И конвертирует их в формат времени
+*/ 
+std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day, int hour, int minute, int second) 
+{
     std::tm tm = {0};
     tm.tm_year = year - 1900; // Years since 1900
     tm.tm_mon = month - 1;    // Months since January (0-11)
@@ -114,7 +143,15 @@ std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day
     return std::chrono::system_clock::from_time_t(tt);
 }
 
-int check_win_registry() {
+/*!
+\brief Получение профиля сети
+
+Каждые десять секунд сканирует реестр виндовс \n
+Получает последний профиль сети \n
+Записывает в файл is_threat тип сети \n
+*/
+int check_win_registry() 
+{
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	WCHAR lastProfile[255] = L"None";
 	auto lastDate = makeTimePoint(0,0,0,0,0,0);
@@ -189,7 +226,6 @@ int check_win_registry() {
 						} else {
 							std::wcerr << L"Failed to read DateLastConnected. Error code: " << result << std::endl;
 						}
-						delete[] dateData;  // Clean up allocated memory
 					} else if (result == ERROR_FILE_NOT_FOUND) {
 						std::wcerr << L"DateLastConnected not found for profile: " << profileName << std::endl;
 					} else {
@@ -216,12 +252,21 @@ int check_win_registry() {
 			myFile << lastCategory;
 			myFile.close();
 		}
-		std::this_thread::sleep_for(std::chrono::seconds(2));
+		std::this_thread::sleep_for(std::chrono::seconds(10));
 	}
     return 0;
 }
 
-int main() {
+
+
+/*!
+\brief Основная функция
+
+Запускает функцию для создания иконки на панели задач. \n
+Запускает поток проверки подключения.
+*/
+int main() 
+{
     startup();
 	
 	
@@ -249,7 +294,7 @@ int main() {
 	MessageBoxW(NULL, 
                L"Приложение запущено!",  
                L"Успешно",         
-               MB_OK | MB_ICONINFORMATION); /// ГОЙДА
+               MB_OK | MB_ICONINFORMATION);
 	
     
     MSG msg;

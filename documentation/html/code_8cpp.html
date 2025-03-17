@@ -110,106 +110,63 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">Файл code.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><b>Код для определения профиля сети</b>  
+<a href="#details">Подробнее...</a></p>
 <div class="textblock"><code>#include &lt;windows.h&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;cwchar&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Макросы</h2></td></tr>
-<tr class="memitem:a47e8d200dc6011ad0e877103b2ca518e" id="r_a47e8d200dc6011ad0e877103b2ca518e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47e8d200dc6011ad0e877103b2ca518e">IDI_MYICON</a>&#160;&#160;&#160;101</td></tr>
+<tr class="memitem:a47e8d200dc6011ad0e877103b2ca518e" id="r_a47e8d200dc6011ad0e877103b2ca518e"><td class="memItemLeft" align="right" valign="top"><a id="a47e8d200dc6011ad0e877103b2ca518e" name="a47e8d200dc6011ad0e877103b2ca518e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IDI_MYICON</b>&#160;&#160;&#160;101</td></tr>
 <tr class="separator:a47e8d200dc6011ad0e877103b2ca518e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78f268711728e1c0f7fa84b389525420" id="r_a78f268711728e1c0f7fa84b389525420"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78f268711728e1c0f7fa84b389525420">ID_TRAY_APP_ICON</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a78f268711728e1c0f7fa84b389525420" id="r_a78f268711728e1c0f7fa84b389525420"><td class="memItemLeft" align="right" valign="top"><a id="a78f268711728e1c0f7fa84b389525420" name="a78f268711728e1c0f7fa84b389525420"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ID_TRAY_APP_ICON</b>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a78f268711728e1c0f7fa84b389525420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d3f8830d0a808906fd689ff2c5799e9" id="r_a1d3f8830d0a808906fd689ff2c5799e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d3f8830d0a808906fd689ff2c5799e9">WM_TRAYNOTIFY</a>&#160;&#160;&#160;(WM_USER + 1)</td></tr>
+<tr class="memitem:a1d3f8830d0a808906fd689ff2c5799e9" id="r_a1d3f8830d0a808906fd689ff2c5799e9"><td class="memItemLeft" align="right" valign="top"><a id="a1d3f8830d0a808906fd689ff2c5799e9" name="a1d3f8830d0a808906fd689ff2c5799e9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>WM_TRAYNOTIFY</b>&#160;&#160;&#160;(WM_USER + 1)</td></tr>
 <tr class="separator:a1d3f8830d0a808906fd689ff2c5799e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79aeed168a959b22b32169e25f8c1f4d" id="r_a79aeed168a959b22b32169e25f8c1f4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79aeed168a959b22b32169e25f8c1f4d">IDM_EXIT</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="memitem:a79aeed168a959b22b32169e25f8c1f4d" id="r_a79aeed168a959b22b32169e25f8c1f4d"><td class="memItemLeft" align="right" valign="top"><a id="a79aeed168a959b22b32169e25f8c1f4d" name="a79aeed168a959b22b32169e25f8c1f4d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IDM_EXIT</b>&#160;&#160;&#160;1000</td></tr>
 <tr class="separator:a79aeed168a959b22b32169e25f8c1f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
+<tr class="memitem:abf2a020ce8fef00220912e3844844181" id="r_abf2a020ce8fef00220912e3844844181"><td class="memItemLeft" align="right" valign="top"><a id="abf2a020ce8fef00220912e3844844181" name="abf2a020ce8fef00220912e3844844181"></a>
+std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>running</b> (true)</td></tr>
+<tr class="separator:abf2a020ce8fef00220912e3844844181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a342f2b246cde3f4ca5814a328fdae6d3" id="r_a342f2b246cde3f4ca5814a328fdae6d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a342f2b246cde3f4ca5814a328fdae6d3">startup</a> ()</td></tr>
 <tr class="separator:a342f2b246cde3f4ca5814a328fdae6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf2a020ce8fef00220912e3844844181" id="r_abf2a020ce8fef00220912e3844844181"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf2a020ce8fef00220912e3844844181">running</a> (true)</td></tr>
-<tr class="separator:abf2a020ce8fef00220912e3844844181"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72cc05e3935370a6baf8c76645b5a43b" id="r_a72cc05e3935370a6baf8c76645b5a43b"><td class="memItemLeft" align="right" valign="top">LRESULT CALLBACK&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72cc05e3935370a6baf8c76645b5a43b">WndProc</a> (HWND <a class="el" href="#aa72255e7356d612ad72bb45def01fcbb">hwnd</a>, UINT msg, WPARAM wParam, LPARAM lParam)</td></tr>
+<tr class="memitem:a72cc05e3935370a6baf8c76645b5a43b" id="r_a72cc05e3935370a6baf8c76645b5a43b"><td class="memItemLeft" align="right" valign="top">LRESULT CALLBACK&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72cc05e3935370a6baf8c76645b5a43b">WndProc</a> (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)</td></tr>
 <tr class="separator:a72cc05e3935370a6baf8c76645b5a43b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a845888a42699a6a8f7a8bb553d1ed890" id="r_a845888a42699a6a8f7a8bb553d1ed890"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845888a42699a6a8f7a8bb553d1ed890">InitTray</a> (HWND <a class="el" href="#aa72255e7356d612ad72bb45def01fcbb">hwnd</a>)</td></tr>
+<tr class="memitem:a845888a42699a6a8f7a8bb553d1ed890" id="r_a845888a42699a6a8f7a8bb553d1ed890"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845888a42699a6a8f7a8bb553d1ed890">InitTray</a> (HWND hwnd)</td></tr>
 <tr class="separator:a845888a42699a6a8f7a8bb553d1ed890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f4c672b383ffe09c7cdafab1bcd978b" id="r_a6f4c672b383ffe09c7cdafab1bcd978b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f4c672b383ffe09c7cdafab1bcd978b">RemoveTray</a> (HWND <a class="el" href="#aa72255e7356d612ad72bb45def01fcbb">hwnd</a>)</td></tr>
+<tr class="memitem:a6f4c672b383ffe09c7cdafab1bcd978b" id="r_a6f4c672b383ffe09c7cdafab1bcd978b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f4c672b383ffe09c7cdafab1bcd978b">RemoveTray</a> (HWND hwnd)</td></tr>
 <tr class="separator:a6f4c672b383ffe09c7cdafab1bcd978b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54c2e00181a7271993b06261a4126e5e" id="r_a54c2e00181a7271993b06261a4126e5e"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54c2e00181a7271993b06261a4126e5e">makeTimePoint</a> (int year, int month, int day, int hour, int minute, int second)</td></tr>
 <tr class="separator:a54c2e00181a7271993b06261a4126e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a741dda0183a428292ed109cd260a34b4" id="r_a741dda0183a428292ed109cd260a34b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a741dda0183a428292ed109cd260a34b4">check_win_registry</a> ()</td></tr>
+<tr class="memdesc:a741dda0183a428292ed109cd260a34b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получение профиля сети  <br /></td></tr>
 <tr class="separator:a741dda0183a428292ed109cd260a34b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основная функция  <br /></td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
-<tr class="memitem:aa72255e7356d612ad72bb45def01fcbb" id="r_aa72255e7356d612ad72bb45def01fcbb"><td class="memItemLeft" align="right" valign="top">HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa72255e7356d612ad72bb45def01fcbb">hwnd</a></td></tr>
+<tr class="memitem:aa72255e7356d612ad72bb45def01fcbb" id="r_aa72255e7356d612ad72bb45def01fcbb"><td class="memItemLeft" align="right" valign="top"><a id="aa72255e7356d612ad72bb45def01fcbb" name="aa72255e7356d612ad72bb45def01fcbb"></a>
+HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 <tr class="separator:aa72255e7356d612ad72bb45def01fcbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Макросы</h2>
-<a id="a78f268711728e1c0f7fa84b389525420" name="a78f268711728e1c0f7fa84b389525420"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78f268711728e1c0f7fa84b389525420">&#9670;&#160;</a></span>ID_TRAY_APP_ICON</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ID_TRAY_APP_ICON&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a47e8d200dc6011ad0e877103b2ca518e" name="a47e8d200dc6011ad0e877103b2ca518e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47e8d200dc6011ad0e877103b2ca518e">&#9670;&#160;</a></span>IDI_MYICON</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IDI_MYICON&#160;&#160;&#160;101</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a79aeed168a959b22b32169e25f8c1f4d" name="a79aeed168a959b22b32169e25f8c1f4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79aeed168a959b22b32169e25f8c1f4d">&#9670;&#160;</a></span>IDM_EXIT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IDM_EXIT&#160;&#160;&#160;1000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1d3f8830d0a808906fd689ff2c5799e9" name="a1d3f8830d0a808906fd689ff2c5799e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d3f8830d0a808906fd689ff2c5799e9">&#9670;&#160;</a></span>WM_TRAYNOTIFY</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define WM_TRAYNOTIFY&#160;&#160;&#160;(WM_USER + 1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Функции</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p><b>Код для определения профиля сети</b> </p>
+<p>Открывает реестр Windows и проверяет тип сети, к которой выполнялось последнее подключение. </p>
+</div><h2 class="groupheader">Функции</h2>
 <a id="a741dda0183a428292ed109cd260a34b4" name="a741dda0183a428292ed109cd260a34b4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a741dda0183a428292ed109cd260a34b4">&#9670;&#160;</a></span>check_win_registry()</h2>
 
@@ -224,6 +181,12 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Получение профиля сети </p>
+<p>Каждые десять секунд сканирует реестр виндовс <br  />
+Получает последний профиль сети <br  />
+Записывает в файл is_threat тип сети <br  />
+</p>
 
 </div>
 </div>
@@ -241,6 +204,7 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Создание иконки на панели задач при запуске программы </p>
 
 </div>
 </div>
@@ -258,7 +222,10 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-<p>ГОЙДА</p>
+
+<p>Основная функция </p>
+<p>Запускает функцию для создания иконки на панели задач. <br  />
+Запускает поток проверки подключения. </p>
 
 </div>
 </div>
@@ -300,6 +267,8 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Получает на вход год, месяц, день, час, минуту и секунду в формате числа <br  />
+И конвертирует их в формат времени </p>
 
 </div>
 </div>
@@ -317,23 +286,7 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="abf2a020ce8fef00220912e3844844181" name="abf2a020ce8fef00220912e3844844181"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf2a020ce8fef00220912e3844844181">&#9670;&#160;</a></span>running()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::atomic&lt; bool &gt; running </td>
-          <td>(</td>
-          <td class="paramtype">true</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Удаление иконки на панели задач при выключении программы </p>
 
 </div>
 </div>
@@ -351,6 +304,7 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Добавляет путь к программе в список автозагрузки windows </p>
 
 </div>
 </div>
@@ -382,21 +336,7 @@ $(function(){initNavTree('code_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Переменные</h2>
-<a id="aa72255e7356d612ad72bb45def01fcbb" name="aa72255e7356d612ad72bb45def01fcbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa72255e7356d612ad72bb45def01fcbb">&#9670;&#160;</a></span>hwnd</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">HWND hwnd</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Фукция для выключения программы, если нажата кнопка "Выключить" </p>
 
 </div>
 </div>

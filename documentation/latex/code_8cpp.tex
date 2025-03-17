@@ -1,74 +1,63 @@
 \doxysection{Файл code.\+cpp}
 \hypertarget{code_8cpp}{}\label{code_8cpp}\index{code.cpp@{code.cpp}}
+
+
+{\bfseries{Код для определения профиля сети}}  
+
+
 {\ttfamily \#include $<$windows.\+h$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$thread$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$atomic$>$}\newline
-{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cwchar$>$}\newline
 \doxysubsubsection*{Макросы}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e}{IDI\+\_\+\+MYICON}}~101
+\Hypertarget{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e}\label{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e} 
+\#define {\bfseries IDI\+\_\+\+MYICON}~101
 \item 
-\#define \mbox{\hyperlink{code_8cpp_a78f268711728e1c0f7fa84b389525420}{ID\+\_\+\+TRAY\+\_\+\+APP\+\_\+\+ICON}}~1
+\Hypertarget{code_8cpp_a78f268711728e1c0f7fa84b389525420}\label{code_8cpp_a78f268711728e1c0f7fa84b389525420} 
+\#define {\bfseries ID\+\_\+\+TRAY\+\_\+\+APP\+\_\+\+ICON}~1
 \item 
-\#define \mbox{\hyperlink{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9}{WM\+\_\+\+TRAYNOTIFY}}~(WM\+\_\+\+USER + 1)
+\Hypertarget{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9}\label{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9} 
+\#define {\bfseries WM\+\_\+\+TRAYNOTIFY}~(WM\+\_\+\+USER + 1)
 \item 
-\#define \mbox{\hyperlink{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d}{IDM\+\_\+\+EXIT}}~1000
+\Hypertarget{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d}\label{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d} 
+\#define {\bfseries IDM\+\_\+\+EXIT}~1000
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Функции}
 \begin{DoxyCompactItemize}
 \item 
+\Hypertarget{code_8cpp_abf2a020ce8fef00220912e3844844181}\label{code_8cpp_abf2a020ce8fef00220912e3844844181} 
+std\+::atomic$<$ bool $>$ {\bfseries running} (true)
+\item 
 int \mbox{\hyperlink{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3}{startup}} ()
 \item 
-std\+::atomic$<$ bool $>$ \mbox{\hyperlink{code_8cpp_abf2a020ce8fef00220912e3844844181}{running}} (true)
+LRESULT CALLBACK \mbox{\hyperlink{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b}{Wnd\+Proc}} (HWND hwnd, UINT msg, WPARAM w\+Param, LPARAM l\+Param)
 \item 
-LRESULT CALLBACK \mbox{\hyperlink{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b}{Wnd\+Proc}} (HWND \mbox{\hyperlink{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}{hwnd}}, UINT msg, WPARAM w\+Param, LPARAM l\+Param)
+void \mbox{\hyperlink{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890}{Init\+Tray}} (HWND hwnd)
 \item 
-void \mbox{\hyperlink{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890}{Init\+Tray}} (HWND \mbox{\hyperlink{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}{hwnd}})
-\item 
-void \mbox{\hyperlink{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b}{Remove\+Tray}} (HWND \mbox{\hyperlink{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}{hwnd}})
+void \mbox{\hyperlink{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b}{Remove\+Tray}} (HWND hwnd)
 \item 
 std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{code_8cpp_a54c2e00181a7271993b06261a4126e5e}{make\+Time\+Point}} (int year, int month, int day, int hour, int minute, int second)
 \item 
 int \mbox{\hyperlink{code_8cpp_a741dda0183a428292ed109cd260a34b4}{check\+\_\+win\+\_\+registry}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Получение профиля сети \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Основная функция \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Переменные}
 \begin{DoxyCompactItemize}
 \item 
-HWND \mbox{\hyperlink{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}{hwnd}}
+\Hypertarget{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}\label{code_8cpp_aa72255e7356d612ad72bb45def01fcbb} 
+HWND {\bfseries hwnd}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Макросы}
-\Hypertarget{code_8cpp_a78f268711728e1c0f7fa84b389525420}\index{code.cpp@{code.cpp}!ID\_TRAY\_APP\_ICON@{ID\_TRAY\_APP\_ICON}}
-\index{ID\_TRAY\_APP\_ICON@{ID\_TRAY\_APP\_ICON}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{ID\_TRAY\_APP\_ICON}{ID\_TRAY\_APP\_ICON}}
-{\footnotesize\ttfamily \label{code_8cpp_a78f268711728e1c0f7fa84b389525420} 
-\#define ID\+\_\+\+TRAY\+\_\+\+APP\+\_\+\+ICON~1}
+\doxysubsection{Подробное описание}
+{\bfseries{Код для определения профиля сети}} 
 
-\Hypertarget{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e}\index{code.cpp@{code.cpp}!IDI\_MYICON@{IDI\_MYICON}}
-\index{IDI\_MYICON@{IDI\_MYICON}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{IDI\_MYICON}{IDI\_MYICON}}
-{\footnotesize\ttfamily \label{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e} 
-\#define IDI\+\_\+\+MYICON~101}
-
-\Hypertarget{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d}\index{code.cpp@{code.cpp}!IDM\_EXIT@{IDM\_EXIT}}
-\index{IDM\_EXIT@{IDM\_EXIT}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{IDM\_EXIT}{IDM\_EXIT}}
-{\footnotesize\ttfamily \label{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d} 
-\#define IDM\+\_\+\+EXIT~1000}
-
-\Hypertarget{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9}\index{code.cpp@{code.cpp}!WM\_TRAYNOTIFY@{WM\_TRAYNOTIFY}}
-\index{WM\_TRAYNOTIFY@{WM\_TRAYNOTIFY}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{WM\_TRAYNOTIFY}{WM\_TRAYNOTIFY}}
-{\footnotesize\ttfamily \label{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9} 
-\#define WM\+\_\+\+TRAYNOTIFY~(WM\+\_\+\+USER + 1)}
-
-
+Открывает реестр Windows и проверяет тип сети, к которой выполнялось последнее подключение. 
 
 \doxysubsection{Функции}
 \Hypertarget{code_8cpp_a741dda0183a428292ed109cd260a34b4}\index{code.cpp@{code.cpp}!check\_win\_registry@{check\_win\_registry}}
@@ -77,54 +66,53 @@ HWND \mbox{\hyperlink{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}{hwnd}}
 {\footnotesize\ttfamily \label{code_8cpp_a741dda0183a428292ed109cd260a34b4} 
 int check\+\_\+win\+\_\+registry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+
+
+Получение профиля сети 
+
+Каждые десять секунд сканирует реестр виндовс ~\newline
+Получает последний профиль сети ~\newline
+Записывает в файл is\+\_\+threat тип сети ~\newline
 \Hypertarget{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890}\index{code.cpp@{code.cpp}!InitTray@{InitTray}}
 \index{InitTray@{InitTray}!code.cpp@{code.cpp}}
 \doxysubsubsection{\texorpdfstring{InitTray()}{InitTray()}}
 {\footnotesize\ttfamily \label{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890} 
 void Init\+Tray (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{}\end{DoxyParamCaption})}
 
-\Hypertarget{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{code.cpp@{code.cpp}!main@{main}}
+Создание иконки на панели задач при запуске программы \Hypertarget{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{code.cpp@{code.cpp}!main@{main}}
 \index{main@{main}!code.cpp@{code.cpp}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily \label{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
 int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-ГОЙДА\Hypertarget{code_8cpp_a54c2e00181a7271993b06261a4126e5e}\index{code.cpp@{code.cpp}!makeTimePoint@{makeTimePoint}}
+
+
+Основная функция 
+
+Запускает функцию для создания иконки на панели задач. ~\newline
+Запускает поток проверки подключения. \Hypertarget{code_8cpp_a54c2e00181a7271993b06261a4126e5e}\index{code.cpp@{code.cpp}!makeTimePoint@{makeTimePoint}}
 \index{makeTimePoint@{makeTimePoint}!code.cpp@{code.cpp}}
 \doxysubsubsection{\texorpdfstring{makeTimePoint()}{makeTimePoint()}}
 {\footnotesize\ttfamily \label{code_8cpp_a54c2e00181a7271993b06261a4126e5e} 
 std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point make\+Time\+Point (\begin{DoxyParamCaption}\item[{int}]{year}{, }\item[{int}]{month}{, }\item[{int}]{day}{, }\item[{int}]{hour}{, }\item[{int}]{minute}{, }\item[{int}]{second}{}\end{DoxyParamCaption})}
 
-\Hypertarget{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b}\index{code.cpp@{code.cpp}!RemoveTray@{RemoveTray}}
+Получает на вход год, месяц, день, час, минуту и секунду в формате числа ~\newline
+И конвертирует их в формат времени \Hypertarget{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b}\index{code.cpp@{code.cpp}!RemoveTray@{RemoveTray}}
 \index{RemoveTray@{RemoveTray}!code.cpp@{code.cpp}}
 \doxysubsubsection{\texorpdfstring{RemoveTray()}{RemoveTray()}}
 {\footnotesize\ttfamily \label{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b} 
 void Remove\+Tray (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{}\end{DoxyParamCaption})}
 
-\Hypertarget{code_8cpp_abf2a020ce8fef00220912e3844844181}\index{code.cpp@{code.cpp}!running@{running}}
-\index{running@{running}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{running()}{running()}}
-{\footnotesize\ttfamily \label{code_8cpp_abf2a020ce8fef00220912e3844844181} 
-std\+::atomic$<$ bool $>$ running (\begin{DoxyParamCaption}\item[{true}]{}{}\end{DoxyParamCaption})}
-
-\Hypertarget{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3}\index{code.cpp@{code.cpp}!startup@{startup}}
+Удаление иконки на панели задач при выключении программы \Hypertarget{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3}\index{code.cpp@{code.cpp}!startup@{startup}}
 \index{startup@{startup}!code.cpp@{code.cpp}}
 \doxysubsubsection{\texorpdfstring{startup()}{startup()}}
 {\footnotesize\ttfamily \label{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3} 
 int startup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b}\index{code.cpp@{code.cpp}!WndProc@{WndProc}}
+Добавляет путь к программе в список автозагрузки windows \Hypertarget{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b}\index{code.cpp@{code.cpp}!WndProc@{WndProc}}
 \index{WndProc@{WndProc}!code.cpp@{code.cpp}}
 \doxysubsubsection{\texorpdfstring{WndProc()}{WndProc()}}
 {\footnotesize\ttfamily \label{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b} 
 LRESULT CALLBACK Wnd\+Proc (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{, }\item[{UINT}]{msg}{, }\item[{WPARAM}]{w\+Param}{, }\item[{LPARAM}]{l\+Param}{}\end{DoxyParamCaption})}
 
-
-
-\doxysubsection{Переменные}
-\Hypertarget{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}\index{code.cpp@{code.cpp}!hwnd@{hwnd}}
-\index{hwnd@{hwnd}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{hwnd}{hwnd}}
-{\footnotesize\ttfamily \label{code_8cpp_aa72255e7356d612ad72bb45def01fcbb} 
-HWND hwnd}
-
+Фукция для выключения программы, если нажата кнопка "{}Выключить"{} 
