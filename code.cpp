@@ -207,7 +207,7 @@ int check_win_registry() {
 		WriteConsoleW(hConsole, L"LastProfile Name: ", wcslen(L"LastProfile Name: "), nullptr, nullptr);
 		WriteConsoleW(hConsole, lastProfile, wcslen(lastProfile), nullptr, nullptr);
 		WriteConsoleW(hConsole, "\n", 1, nullptr, nullptr);
-
+		
 		std::wcout <<L"Last Category: "<< lastCategory << std::endl;
 		RegCloseKey(hKey);
 		
