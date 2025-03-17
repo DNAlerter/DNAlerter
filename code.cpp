@@ -3,7 +3,8 @@
 #include <thread>
 #include <fstream>
 #include <atomic>
-#include <string>
+#include <cwchar>
+#include <cwchar>
 
 #define IDI_MYICON 101
 #define ID_TRAY_APP_ICON 1
@@ -114,7 +115,10 @@ std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day
 }
 
 int check_win_registry() {
-
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	WCHAR lastProfile[255] = L"None";
+	auto lastDate = makeTimePoint(0,0,0,0,0,0);
+	int lastCategory = 1;
 	while (running){
 		DWORD index = 0;
 		WCHAR subKeyName[255];
@@ -128,9 +132,7 @@ int check_win_registry() {
 		int minute;
 		int second;
 		
-		auto lastDate = makeTimePoint(0,0,0,0,0,0);
-		WCHAR lastProfile[255];
-		int lastCategory;
+		
 		HKEY hKey;
 		
 		LONG result = RegOpenKeyExW(HKEY_LOCAL_MACHINE, 
@@ -160,9 +162,6 @@ int check_win_registry() {
 						result = RegQueryValueExW(hSubKey, L"DateLastConnected", NULL, NULL, dateData, &cbData);
 						if (result == ERROR_SUCCESS) {
 							
-							
-							//std::wcout << L"Profile Name: " << profileName << std::endl; // WCOUT HERE
-							
 							year = int(dateData[0]+dateData[1]*256);
 							month = int(dateData[2]+dateData[3]*256);
 							day = int(dateData[6]+dateData[7]*256);
@@ -173,13 +172,20 @@ int check_win_registry() {
 							auto date = makeTimePoint(year,month,day,hour,minute,second);
 							
 							DWORD category;
-							RegQueryValueExW(hSubKey, L"Category", NULL, &type, (LPBYTE)&category, &cbData);
+							//RegQueryValueExW(hSubKey, L"Category", NULL, &type, (LPBYTE)&category, &cbData);
 							
-							//std::cout<<"Category: "<<category<<std::endl;// WCOUT HERE
+							//std::cout<<"Category: "<<category<<std::endl;
 							
-							if (date>lastDate){
+							if (date>lastDate or category!=lastCategory){
 								lastDate=date;
 								lastCategory=category;
+								WriteConsoleW(hConsole, L"Changed Profile Name: ", 22, nullptr, nullptr);
+								WriteConsoleW(hConsole, profileName, wcslen(profileName), nullptr, nullptr);
+								WriteConsoleW(hConsole, "\n", 1, nullptr, nullptr);
+
+								if (category==0){ 
+									MessageBoxW(NULL, L"Вы подключены к небезопасной сети!",  L"Внимание", MB_OK | MB_ICONINFORMATION);
+								}
 								wcsncpy(lastProfile, profileName, 255);
 							}
 						} else {
@@ -192,13 +198,19 @@ int check_win_registry() {
 						std::wcerr << L"Failed to query DateLastConnected. Error code: " << result << std::endl;
 					}
 				}
+				else{
+					std::wcerr <<L"Error"<<std::endl;
+				}
 				RegCloseKey(hSubKey);
 			}
 			index++;
 			cbName = 255;
 		}
-		std::wcout << L"Last Profile: "<< lastProfile << std::endl;
-		std::wcout <<"Last Category: "<< lastCategory << std::endl;
+		WriteConsoleW(hConsole, L"LastProfile Name: ", wcslen(L"LastProfile Name: "), nullptr, nullptr);
+		WriteConsoleW(hConsole, lastProfile, wcslen(lastProfile), nullptr, nullptr);
+		WriteConsoleW(hConsole, "\n", 1, nullptr, nullptr);
+
+		std::wcout <<L"Last Category: "<< lastCategory << std::endl;
 		RegCloseKey(hKey);
 		
 		std::ofstream myFile("./is_threat", std::ios::out | std::ios::trunc);
@@ -206,13 +218,14 @@ int check_win_registry() {
 			myFile << lastCategory;
 			myFile.close();
 		}
-		std::this_thread::sleep_for(std::chrono::seconds(7));
+		std::this_thread::sleep_for(std::chrono::seconds(2));
 	}
     return 0;
 }
 
 int main() {
     startup();
+	
 	
     WNDCLASSEXW wc = {0};
     wc.cbSize = sizeof(WNDCLASSEXW);
@@ -228,7 +241,9 @@ int main() {
         std::cerr << "Error creating icon!" << std::endl;
         return 1;
     }
+		
 
+	
     InitTray(hwnd);
 
     std::thread cwrThread(check_win_registry);
@@ -236,7 +251,7 @@ int main() {
 	MessageBoxW(NULL, 
                L"Приложение запущено!",  
                L"Успешно",         
-               MB_OK | MB_ICONINFORMATION);
+               MB_OK | MB_ICONINFORMATION); /// ГОЙДА
 	
     
     MSG msg;
