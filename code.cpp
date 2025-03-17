@@ -118,7 +118,7 @@ int check_win_registry() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	WCHAR lastProfile[255] = L"None";
 	auto lastDate = makeTimePoint(0,0,0,0,0,0);
-	int lastCategory = 1;
+	int lastCategory = 0;
 	while (running){
 		DWORD index = 0;
 		WCHAR subKeyName[255];
@@ -172,11 +172,9 @@ int check_win_registry() {
 							auto date = makeTimePoint(year,month,day,hour,minute,second);
 							
 							DWORD category;
-							//RegQueryValueExW(hSubKey, L"Category", NULL, &type, (LPBYTE)&category, &cbData);
+							RegQueryValueExW(hSubKey, L"Category", NULL, &type, (LPBYTE)&category, &cbData);
 							
-							//std::cout<<"Category: "<<category<<std::endl;
-							
-							if (date>lastDate or category!=lastCategory){
+							if (date>lastDate or (wcscmp(profileName,lastProfile)==0 and category!=lastCategory)){
 								lastDate=date;
 								lastCategory=category;
 								WriteConsoleW(hConsole, L"Changed Profile Name: ", 22, nullptr, nullptr);
