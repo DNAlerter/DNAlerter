@@ -1,5 +1,5 @@
 \doxysection{Файл code.\+cpp}
-\hypertarget{code_8cpp}{}\label{code_8cpp}\index{code.cpp@{code.cpp}}
+\label{code_8cpp}\index{code.cpp@{code.cpp}}
 
 
 {\bfseries{Код для определения профиля сети}}  
@@ -14,42 +14,42 @@
 \doxysubsubsection*{Макросы}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e}\label{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e} 
+\label{code_8cpp_a47e8d200dc6011ad0e877103b2ca518e} 
 \#define {\bfseries IDI\+\_\+\+MYICON}~101
 \item 
-\Hypertarget{code_8cpp_a78f268711728e1c0f7fa84b389525420}\label{code_8cpp_a78f268711728e1c0f7fa84b389525420} 
+\label{code_8cpp_a78f268711728e1c0f7fa84b389525420} 
 \#define {\bfseries ID\+\_\+\+TRAY\+\_\+\+APP\+\_\+\+ICON}~1
 \item 
-\Hypertarget{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9}\label{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9} 
+\label{code_8cpp_a1d3f8830d0a808906fd689ff2c5799e9} 
 \#define {\bfseries WM\+\_\+\+TRAYNOTIFY}~(WM\+\_\+\+USER + 1)
 \item 
-\Hypertarget{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d}\label{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d} 
+\label{code_8cpp_a79aeed168a959b22b32169e25f8c1f4d} 
 \#define {\bfseries IDM\+\_\+\+EXIT}~1000
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Функции}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{code_8cpp_abf2a020ce8fef00220912e3844844181}\label{code_8cpp_abf2a020ce8fef00220912e3844844181} 
+\label{code_8cpp_abf2a020ce8fef00220912e3844844181} 
 std\+::atomic$<$ bool $>$ {\bfseries running} (true)
 \item 
-int \mbox{\hyperlink{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3}{startup}} ()
+int \textbf{ startup} ()
 \item 
-LRESULT CALLBACK \mbox{\hyperlink{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b}{Wnd\+Proc}} (HWND hwnd, UINT msg, WPARAM w\+Param, LPARAM l\+Param)
+LRESULT CALLBACK \textbf{ Wnd\+Proc} (HWND hwnd, UINT msg, WPARAM w\+Param, LPARAM l\+Param)
 \item 
-void \mbox{\hyperlink{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890}{Init\+Tray}} (HWND hwnd)
+void \textbf{ Init\+Tray} (HWND hwnd)
 \item 
-void \mbox{\hyperlink{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b}{Remove\+Tray}} (HWND hwnd)
+void \textbf{ Remove\+Tray} (HWND hwnd)
 \item 
-std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{code_8cpp_a54c2e00181a7271993b06261a4126e5e}{make\+Time\+Point}} (int year, int month, int day, int hour, int minute, int second)
+std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \textbf{ make\+Time\+Point} (int year, int month, int day, int hour, int minute, int second)
 \item 
-int \mbox{\hyperlink{code_8cpp_a741dda0183a428292ed109cd260a34b4}{check\+\_\+win\+\_\+registry}} ()
+int \textbf{ check\+\_\+win\+\_\+registry} ()
 \begin{DoxyCompactList}\small\item\em Получение профиля сети \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+int \textbf{ main} ()
 \begin{DoxyCompactList}\small\item\em Основная функция \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Переменные}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{code_8cpp_aa72255e7356d612ad72bb45def01fcbb}\label{code_8cpp_aa72255e7356d612ad72bb45def01fcbb} 
+\label{code_8cpp_aa72255e7356d612ad72bb45def01fcbb} 
 HWND {\bfseries hwnd}
 \end{DoxyCompactItemize}
 
@@ -60,9 +60,9 @@ HWND {\bfseries hwnd}
 Открывает реестр Windows и проверяет тип сети, к которой выполнялось последнее подключение. 
 
 \doxysubsection{Функции}
-\Hypertarget{code_8cpp_a741dda0183a428292ed109cd260a34b4}\index{code.cpp@{code.cpp}!check\_win\_registry@{check\_win\_registry}}
+\index{code.cpp@{code.cpp}!check\_win\_registry@{check\_win\_registry}}
 \index{check\_win\_registry@{check\_win\_registry}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{check\_win\_registry()}{check\_win\_registry()}}
+\doxysubsubsection{check\_win\_registry()}
 {\footnotesize\ttfamily \label{code_8cpp_a741dda0183a428292ed109cd260a34b4} 
 int check\+\_\+win\+\_\+registry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
@@ -73,15 +73,139 @@ int check\+\_\+win\+\_\+registry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapt
 Каждые десять секунд сканирует реестр виндовс ~\newline
 Получает последний профиль сети ~\newline
 Записывает в файл is\+\_\+threat тип сети ~\newline
-\Hypertarget{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890}\index{code.cpp@{code.cpp}!InitTray@{InitTray}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00156\ \ \ \ \ WCHAR\ lastProfile[255]\ =\ L\textcolor{stringliteral}{"{}None"{}};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{auto}\ lastDate\ =\ makeTimePoint(0,0,0,0,0,0);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{int}\ lastCategory\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{while}\ (running)\{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ DWORD\ index\ =\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ WCHAR\ subKeyName[255];}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ DWORD\ cbName\ =\ 255;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ month;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hour;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ minute;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ second;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ HKEY\ hKey;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ LONG\ result\ =\ RegOpenKeyExW(HKEY\_LOCAL\_MACHINE,\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\ NT\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)NetworkList\(\backslash\)\(\backslash\)Profiles"{}},\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KEY\_READ,\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hKey);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ open\ registry\ key.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout<<RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)<<std::endl;}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ HKEY\ hSubKey;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegOpenKeyExW(hKey,\ subKeyName,\ 0,\ KEY\_READ,\ \&hSubKey);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WCHAR\ profileName[255];}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ cbData\ =\ \textcolor{keyword}{sizeof}(profileName);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}ProfileName"{}},\ NULL,\ NULL,\ (LPBYTE)profileName,\ \&cbData);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ type;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cbData\ =\ 0;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ \&type,\ NULL,\ \&cbData);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS\ \&\&\ type\ ==\ REG\_BINARY)\ \{}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BYTE*\ dateData\ =\ \textcolor{keyword}{new}\ BYTE[cbData];}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ NULL,\ dateData,\ \&cbData);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ year\ =\ int(dateData[0]+dateData[1]*256);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month\ =\ int(dateData[2]+dateData[3]*256);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ int(dateData[6]+dateData[7]*256);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hour\ =\ int(dateData[8]+dateData[9]*256);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minute\ =\ int(dateData[10]+dateData[11]*256);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\ =\ int(dateData[12]+dateData[13]*256);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ date\ =\ makeTimePoint(year,month,day,hour,minute,second);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ category;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}Category"{}},\ NULL,\ \&type,\ (LPBYTE)\&category,\ \&cbData);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (date>lastDate\ or\ (wcscmp(profileName,lastProfile)==0\ and\ category!=lastCategory))\{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastDate=date;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastCategory=category;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}Changed\ Profile\ Name:\ "{}},\ 22,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ profileName,\ wcslen(profileName),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (category==0)\{\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MessageBoxW(NULL,\ L\textcolor{stringliteral}{"{}Вы\ подключены\ к\ небезопасной\ сети!"{}},\ \ L\textcolor{stringliteral}{"{}Внимание"{}},\ MB\_OK\ |\ MB\_ICONINFORMATION);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wcsncpy(lastProfile,\ profileName,\ 255);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ read\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_FILE\_NOT\_FOUND)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}DateLastConnected\ not\ found\ for\ profile:\ "{}}\ <<\ profileName\ <<\ std::endl;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ query\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<L\textcolor{stringliteral}{"{}Error"{}}<<std::endl;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegCloseKey(hSubKey);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ cbName\ =\ 255;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}},\ wcslen(L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}}),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ lastProfile,\ wcslen(lastProfile),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ std::wcout\ <<L\textcolor{stringliteral}{"{}Last\ Category:\ "{}}<<\ lastCategory\ <<\ std::endl;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ RegCloseKey(hKey);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ myFile\ <<\ lastCategory;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ myFile.close();}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(10));}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00258\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!InitTray@{InitTray}}
 \index{InitTray@{InitTray}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{InitTray()}{InitTray()}}
+\doxysubsubsection{InitTray()}
 {\footnotesize\ttfamily \label{code_8cpp_a845888a42699a6a8f7a8bb553d1ed890} 
 void Init\+Tray (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{}\end{DoxyParamCaption})}
 
-Создание иконки на панели задач при запуске программы \Hypertarget{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{code.cpp@{code.cpp}!main@{main}}
+Создание иконки на панели задач при запуске программы 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ NOTIFYICONDATAW\ nid\ =\ \{0\};}
+\DoxyCodeLine{00095\ \ \ \ \ nid.cbSize\ =\ \textcolor{keyword}{sizeof}(NOTIFYICONDATA);}
+\DoxyCodeLine{00096\ \ \ \ \ nid.hWnd\ =\ hwnd;}
+\DoxyCodeLine{00097\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
+\DoxyCodeLine{00098\ \ \ \ \ nid.uFlags\ =\ NIF\_ICON\ |\ NIF\_MESSAGE\ |\ NIF\_TIP;}
+\DoxyCodeLine{00099\ \ \ \ \ nid.uCallbackMessage\ =\ WM\_TRAYNOTIFY;}
+\DoxyCodeLine{00100\ \ \ \ \ nid.hIcon\ =\ LoadIcon(GetModuleHandle(NULL),\ MAKEINTRESOURCE(IDI\_MYICON));}
+\DoxyCodeLine{00101\ \ \ \ \ wcscpy(nid.szTip,\ L\textcolor{stringliteral}{"{}Оповещение\ о\ небезопасном\ подключении\ к\ сети"{}});}
+\DoxyCodeLine{00102\ \ \ \ \ Shell\_NotifyIconW(NIM\_ADD,\ \&nid);}
+\DoxyCodeLine{00103\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!main@{main}}
 \index{main@{main}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{main()}{main()}}
+\doxysubsubsection{main()}
 {\footnotesize\ttfamily \label{code_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
 int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
@@ -90,29 +214,167 @@ int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 Основная функция 
 
 Запускает функцию для создания иконки на панели задач. ~\newline
-Запускает поток проверки подключения. \Hypertarget{code_8cpp_a54c2e00181a7271993b06261a4126e5e}\index{code.cpp@{code.cpp}!makeTimePoint@{makeTimePoint}}
+Запускает поток проверки подключения. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00269\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ startup();}
+\DoxyCodeLine{00271\ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ WNDCLASSEXW\ wc\ =\ \{0\};}
+\DoxyCodeLine{00274\ \ \ \ \ wc.cbSize\ =\ \textcolor{keyword}{sizeof}(WNDCLASSEXW);}
+\DoxyCodeLine{00275\ \ \ \ \ wc.lpfnWndProc\ =\ WndProc;}
+\DoxyCodeLine{00276\ \ \ \ \ wc.hInstance\ =\ GetModuleHandleW(NULL);}
+\DoxyCodeLine{00277\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ \textcolor{comment}{//\ Wide-\/character\ string}}
+\DoxyCodeLine{00278\ \ \ \ \ RegisterClassExW(\&wc);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ hwnd\ =\ CreateWindowW(L\textcolor{stringliteral}{"{}TrayAppClass"{}},\ L\textcolor{stringliteral}{"{}TrayApp"{}},\ WS\_OVERLAPPEDWINDOW,}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ NULL,\ NULL,\ wc.hInstance,\ NULL);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (!hwnd)\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ creating\ icon!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ }
+\DoxyCodeLine{00290\ \ \ \ \ InitTray(hwnd);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ std::thread\ cwrThread(check\_win\_registry);}
+\DoxyCodeLine{00293\ \ \ \ \ }
+\DoxyCodeLine{00294\ \ \ \ \ MessageBoxW(NULL,\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Приложение\ запущено!"{}},\ \ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Успешно"{}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONINFORMATION);}
+\DoxyCodeLine{00298\ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ MSG\ msg;}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{while}\ (GetMessageW(\&msg,\ NULL,\ 0,\ 0))\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ TranslateMessage(\&msg);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ DispatchMessage(\&msg);}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Очистка}}
+\DoxyCodeLine{00307\ \ \ \ \ RemoveTray(hwnd);}
+\DoxyCodeLine{00308\ \ \ \ \ cwrThread.join();}
+\DoxyCodeLine{00309\ \ \ \ \ }
+\DoxyCodeLine{00310\ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ myFile\ <<\ \textcolor{stringliteral}{"{}1"{}};}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ myFile.close();}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00317\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!makeTimePoint@{makeTimePoint}}
 \index{makeTimePoint@{makeTimePoint}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{makeTimePoint()}{makeTimePoint()}}
+\doxysubsubsection{makeTimePoint()}
 {\footnotesize\ttfamily \label{code_8cpp_a54c2e00181a7271993b06261a4126e5e} 
 std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point make\+Time\+Point (\begin{DoxyParamCaption}\item[{int}]{year}{, }\item[{int}]{month}{, }\item[{int}]{day}{, }\item[{int}]{hour}{, }\item[{int}]{minute}{, }\item[{int}]{second}{}\end{DoxyParamCaption})}
 
 Получает на вход год, месяц, день, час, минуту и секунду в формате числа ~\newline
-И конвертирует их в формат времени \Hypertarget{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b}\index{code.cpp@{code.cpp}!RemoveTray@{RemoveTray}}
+И конвертирует их в формат времени 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ std::tm\ tm\ =\ \{0\};}
+\DoxyCodeLine{00135\ \ \ \ \ tm.tm\_year\ =\ year\ -\/\ 1900;\ \textcolor{comment}{//\ Years\ since\ 1900}}
+\DoxyCodeLine{00136\ \ \ \ \ tm.tm\_mon\ =\ month\ -\/\ 1;\ \ \ \ \textcolor{comment}{//\ Months\ since\ January\ (0-\/11)}}
+\DoxyCodeLine{00137\ \ \ \ \ tm.tm\_mday\ =\ day;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Day\ of\ the\ month\ (1-\/31)}}
+\DoxyCodeLine{00138\ \ \ \ \ tm.tm\_hour\ =\ hour;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hours\ since\ midnight\ (0-\/23)}}
+\DoxyCodeLine{00139\ \ \ \ \ tm.tm\_min\ =\ minute;\ \ \ \ \ \ \ \textcolor{comment}{//\ Minutes\ after\ the\ hour\ (0-\/59)}}
+\DoxyCodeLine{00140\ \ \ \ \ tm.tm\_sec\ =\ second;\ \ \ \ \ \ \ \textcolor{comment}{//\ Seconds\ after\ the\ minute\ (0-\/60)}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ std::time\_t\ tt\ =\ std::mktime(\&tm);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ std::chrono::system\_clock::from\_time\_t(tt);}
+\DoxyCodeLine{00144\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!RemoveTray@{RemoveTray}}
 \index{RemoveTray@{RemoveTray}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{RemoveTray()}{RemoveTray()}}
+\doxysubsubsection{RemoveTray()}
 {\footnotesize\ttfamily \label{code_8cpp_a6f4c672b383ffe09c7cdafab1bcd978b} 
 void Remove\+Tray (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{}\end{DoxyParamCaption})}
 
-Удаление иконки на панели задач при выключении программы \Hypertarget{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3}\index{code.cpp@{code.cpp}!startup@{startup}}
+Удаление иконки на панели задач при выключении программы 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ NOTIFYICONDATA\ nid\ =\ \{0\};}
+\DoxyCodeLine{00113\ \ \ \ \ nid.cbSize\ =\ \textcolor{keyword}{sizeof}(NOTIFYICONDATA);}
+\DoxyCodeLine{00114\ \ \ \ \ nid.hWnd\ =\ hwnd;}
+\DoxyCodeLine{00115\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
+\DoxyCodeLine{00116\ \ \ \ \ Shell\_NotifyIcon(NIM\_DELETE,\ \&nid);}
+\DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!startup@{startup}}
 \index{startup@{startup}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{startup()}{startup()}}
+\doxysubsubsection{startup()}
 {\footnotesize\ttfamily \label{code_8cpp_a342f2b246cde3f4ca5814a328fdae6d3} 
 int startup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Добавляет путь к программе в список автозагрузки windows \Hypertarget{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b}\index{code.cpp@{code.cpp}!WndProc@{WndProc}}
+Добавляет путь к программе в список автозагрузки windows 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{wchar\_t}\ path[MAX\_PATH];}
+\DoxyCodeLine{00032\ \ \ \ \ GetModuleFileNameW(NULL,\ path,\ MAX\_PATH);}
+\DoxyCodeLine{00033\ \ \ \ \ std::wstring\ progPath\ =\ path;}
+\DoxyCodeLine{00034\ \ \ \ \ HKEY\ hkey\ =\ NULL;}
+\DoxyCodeLine{00035\ \ \ \ \ LONG\ createStatus\ =\ RegCreateKeyW(HKEY\_CURRENT\_USER,\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)Run"{}},\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hkey);}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (createStatus\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ LONG\ status\ =\ RegSetValueExW(hkey,\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}DNAlert"{}},\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REG\_SZ,\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BYTE*)progPath.c\_str(),\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (progPath.size()\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{wchar\_t}));}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ RegCloseKey(hkey);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!WndProc@{WndProc}}
 \index{WndProc@{WndProc}!code.cpp@{code.cpp}}
-\doxysubsubsection{\texorpdfstring{WndProc()}{WndProc()}}
+\doxysubsubsection{WndProc()}
 {\footnotesize\ttfamily \label{code_8cpp_a72cc05e3935370a6baf8c76645b5a43b} 
 LRESULT CALLBACK Wnd\+Proc (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{, }\item[{UINT}]{msg}{, }\item[{WPARAM}]{w\+Param}{, }\item[{LPARAM}]{l\+Param}{}\end{DoxyParamCaption})}
 
 Фукция для выключения программы, если нажата кнопка "{}Выключить"{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{switch}\ (msg)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_TRAYNOTIFY:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lParam\ ==\ WM\_RBUTTONUP)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ POINT\ pt;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCursorPos(\&pt);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HMENU\ hMenu\ =\ CreatePopupMenu();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AppendMenuW(hMenu,\ MF\_STRING,\ IDM\_EXIT,\ L\textcolor{stringliteral}{"{}Выключить"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetForegroundWindow(hwnd);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TrackPopupMenu(hMenu,\ TPM\_RIGHTALIGN\ |\ TPM\_BOTTOMALIGN\ |\ TPM\_RIGHTBUTTON,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pt.x,\ pt.y,\ 0,\ hwnd,\ NULL);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DestroyMenu(hMenu);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_COMMAND:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LOWORD(wParam)\ ==\ IDM\_EXIT)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PostQuitMessage(0);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_DESTROY:}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ PostQuitMessage(0);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DefWindowProcW(hwnd,\ msg,\ wParam,\ lParam);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00085\ \}}
+
+\end{DoxyCode}

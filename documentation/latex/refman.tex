@@ -143,6 +143,13 @@
   \setcounter{secnumdepth}{5}
   % creating indexes
   \makeindex
+  % Packages requested by user
+\usepackage{changepage}
+\usepackage{tocloft}
+\usepackage{newunicodechar}
+\usepackage{caption}
+\usepackage{wasysym}
+\usepackage{etoc}
   \ifPDFTeX
 \usepackage{newunicodechar}
   \makeatletter
@@ -165,28 +172,6 @@
   \doxynewunicodechar{³}{${}^{3}$}% Superscript three
 \fi
   % Hyperlinks
-    % Hyperlinks (required, but should be loaded last)
-    \ifPDFTeX
-      \usepackage[pdftex,pagebackref=true]{hyperref}
-    \else
-      \ifXeTeX
-        \usepackage[xetex,pagebackref=true]{hyperref}
-      \else
-        \ifLuaTeX
-          \usepackage[luatex,pagebackref=true]{hyperref}
-        \else
-          \usepackage[ps2pdf,pagebackref=true]{hyperref}
-        \fi
-      \fi
-    \fi
-    \hypersetup{%
-      colorlinks=true,%
-      linkcolor=blue,%
-      citecolor=blue,%
-      unicode,%
-      pdftitle={DNAlerter},%
-      pdfsubject={Оповещение о небезопасном подключении к сети}%
-    }
   % Custom commands used by the header
   % Custom commands
   \newcommand{\clearemptydoublepage}{%
@@ -211,12 +196,6 @@
 \begin{document}
   \raggedbottom
   % Titlepage & ToC
-    % To avoid duplicate page anchors due to reuse of same numbers for
-    % the index (be it as roman numbers)
-    \hypersetup{pageanchor=false,
-                bookmarksnumbered=true,
-                pdfencoding=unicode
-               }
   \pagenumbering{alph}
   \begin{titlepage}
   \vspace*{7cm}
@@ -232,8 +211,6 @@
   \tableofcontents
   \clearemptydoublepage
   \pagenumbering{arabic}
-  % re-enable anchors again
-  \hypersetup{pageanchor=true}
 %--- Begin generated contents ---
 \input{md__r_e_a_d_m_e}
 \chapter{Список файлов}

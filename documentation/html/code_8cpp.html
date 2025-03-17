@@ -187,7 +187,113 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 Получает последний профиль сети <br  />
 Записывает в файл is_threat тип сети <br  />
 </p>
-
+<div class="fragment"><div class="line"><span class="lineno">  154</span>{</div>
+<div class="line"><span class="lineno">  155</span>    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);</div>
+<div class="line"><span class="lineno">  156</span>    WCHAR lastProfile[255] = L<span class="stringliteral">&quot;None&quot;</span>;</div>
+<div class="line"><span class="lineno">  157</span>    <span class="keyword">auto</span> lastDate = <a class="code hl_function" href="#a54c2e00181a7271993b06261a4126e5e">makeTimePoint</a>(0,0,0,0,0,0);</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keywordtype">int</span> lastCategory = 0;</div>
+<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">while</span> (running){</div>
+<div class="line"><span class="lineno">  160</span>        DWORD index = 0;</div>
+<div class="line"><span class="lineno">  161</span>        WCHAR subKeyName[255];</div>
+<div class="line"><span class="lineno">  162</span>        DWORD cbName = 255;</div>
+<div class="line"><span class="lineno">  163</span>        </div>
+<div class="line"><span class="lineno">  164</span>        </div>
+<div class="line"><span class="lineno">  165</span>        <span class="keywordtype">int</span> year;</div>
+<div class="line"><span class="lineno">  166</span>        <span class="keywordtype">int</span> month;</div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordtype">int</span> day;</div>
+<div class="line"><span class="lineno">  168</span>        <span class="keywordtype">int</span> hour;</div>
+<div class="line"><span class="lineno">  169</span>        <span class="keywordtype">int</span> minute;</div>
+<div class="line"><span class="lineno">  170</span>        <span class="keywordtype">int</span> second;</div>
+<div class="line"><span class="lineno">  171</span>        </div>
+<div class="line"><span class="lineno">  172</span>        </div>
+<div class="line"><span class="lineno">  173</span>        HKEY hKey;</div>
+<div class="line"><span class="lineno">  174</span>        </div>
+<div class="line"><span class="lineno">  175</span>        LONG result = RegOpenKeyExW(HKEY_LOCAL_MACHINE, </div>
+<div class="line"><span class="lineno">  176</span>                                    L<span class="stringliteral">&quot;SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\Profiles&quot;</span>, </div>
+<div class="line"><span class="lineno">  177</span>                                    0, </div>
+<div class="line"><span class="lineno">  178</span>                                    KEY_READ, </div>
+<div class="line"><span class="lineno">  179</span>                                    &amp;hKey);</div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (result != ERROR_SUCCESS) {</div>
+<div class="line"><span class="lineno">  181</span>            std::wcerr &lt;&lt; L<span class="stringliteral">&quot;Failed to open registry key. Error code: &quot;</span> &lt;&lt; result &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  182</span>            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  183</span>        }</div>
+<div class="line"><span class="lineno">  184</span>        <span class="comment">//std::cout&lt;&lt;RegEnumKeyExW(hKey, index, subKeyName, &amp;cbName, NULL, NULL, NULL, NULL)&lt;&lt;std::endl;</span></div>
+<div class="line"><span class="lineno">  185</span>        <span class="keywordflow">while</span> (RegEnumKeyExW(hKey, index, subKeyName, &amp;cbName, NULL, NULL, NULL, NULL) == ERROR_SUCCESS) {</div>
+<div class="line"><span class="lineno">  186</span>            HKEY hSubKey;</div>
+<div class="line"><span class="lineno">  187</span>            result = RegOpenKeyExW(hKey, subKeyName, 0, KEY_READ, &amp;hSubKey);</div>
+<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">if</span> (result == ERROR_SUCCESS) {</div>
+<div class="line"><span class="lineno">  189</span>                WCHAR profileName[255];</div>
+<div class="line"><span class="lineno">  190</span>                DWORD cbData = <span class="keyword">sizeof</span>(profileName);</div>
+<div class="line"><span class="lineno">  191</span>                result = RegQueryValueExW(hSubKey, L<span class="stringliteral">&quot;ProfileName&quot;</span>, NULL, NULL, (LPBYTE)profileName, &amp;cbData);</div>
+<div class="line"><span class="lineno">  192</span>                <span class="keywordflow">if</span> (result == ERROR_SUCCESS) {</div>
+<div class="line"><span class="lineno">  193</span>                    DWORD type;</div>
+<div class="line"><span class="lineno">  194</span>                    cbData = 0;</div>
+<div class="line"><span class="lineno">  195</span>                    result = RegQueryValueExW(hSubKey, L<span class="stringliteral">&quot;DateLastConnected&quot;</span>, NULL, &amp;type, NULL, &amp;cbData);</div>
+<div class="line"><span class="lineno">  196</span>                    <span class="keywordflow">if</span> (result == ERROR_SUCCESS &amp;&amp; type == REG_BINARY) {</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>                        BYTE* dateData = <span class="keyword">new</span> BYTE[cbData];</div>
+<div class="line"><span class="lineno">  199</span>                        result = RegQueryValueExW(hSubKey, L<span class="stringliteral">&quot;DateLastConnected&quot;</span>, NULL, NULL, dateData, &amp;cbData);</div>
+<div class="line"><span class="lineno">  200</span>                        <span class="keywordflow">if</span> (result == ERROR_SUCCESS) {</div>
+<div class="line"><span class="lineno">  201</span>                            </div>
+<div class="line"><span class="lineno">  202</span>                            year = int(dateData[0]+dateData[1]*256);</div>
+<div class="line"><span class="lineno">  203</span>                            month = int(dateData[2]+dateData[3]*256);</div>
+<div class="line"><span class="lineno">  204</span>                            day = int(dateData[6]+dateData[7]*256);</div>
+<div class="line"><span class="lineno">  205</span>                            hour = int(dateData[8]+dateData[9]*256);</div>
+<div class="line"><span class="lineno">  206</span>                            minute = int(dateData[10]+dateData[11]*256);</div>
+<div class="line"><span class="lineno">  207</span>                            second = int(dateData[12]+dateData[13]*256);</div>
+<div class="line"><span class="lineno">  208</span>                            </div>
+<div class="line"><span class="lineno">  209</span>                            <span class="keyword">auto</span> date = <a class="code hl_function" href="#a54c2e00181a7271993b06261a4126e5e">makeTimePoint</a>(year,month,day,hour,minute,second);</div>
+<div class="line"><span class="lineno">  210</span>                            </div>
+<div class="line"><span class="lineno">  211</span>                            DWORD category;</div>
+<div class="line"><span class="lineno">  212</span>                            RegQueryValueExW(hSubKey, L<span class="stringliteral">&quot;Category&quot;</span>, NULL, &amp;type, (LPBYTE)&amp;category, &amp;cbData);</div>
+<div class="line"><span class="lineno">  213</span>                            </div>
+<div class="line"><span class="lineno">  214</span>                            <span class="keywordflow">if</span> (date&gt;lastDate or (wcscmp(profileName,lastProfile)==0 and category!=lastCategory)){</div>
+<div class="line"><span class="lineno">  215</span>                                lastDate=date;</div>
+<div class="line"><span class="lineno">  216</span>                                lastCategory=category;</div>
+<div class="line"><span class="lineno">  217</span>                                WriteConsoleW(hConsole, L<span class="stringliteral">&quot;Changed Profile Name: &quot;</span>, 22, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  218</span>                                WriteConsoleW(hConsole, profileName, wcslen(profileName), <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  219</span>                                WriteConsoleW(hConsole, <span class="stringliteral">&quot;\n&quot;</span>, 1, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>                                <span class="keywordflow">if</span> (category==0){ </div>
+<div class="line"><span class="lineno">  222</span>                                    MessageBoxW(NULL, L<span class="stringliteral">&quot;Вы подключены к небезопасной сети!&quot;</span>,  L<span class="stringliteral">&quot;Внимание&quot;</span>, MB_OK | MB_ICONINFORMATION);</div>
+<div class="line"><span class="lineno">  223</span>                                }</div>
+<div class="line"><span class="lineno">  224</span>                                wcsncpy(lastProfile, profileName, 255);</div>
+<div class="line"><span class="lineno">  225</span>                            }</div>
+<div class="line"><span class="lineno">  226</span>                        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  227</span>                            std::wcerr &lt;&lt; L<span class="stringliteral">&quot;Failed to read DateLastConnected. Error code: &quot;</span> &lt;&lt; result &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  228</span>                        }</div>
+<div class="line"><span class="lineno">  229</span>                    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result == ERROR_FILE_NOT_FOUND) {</div>
+<div class="line"><span class="lineno">  230</span>                        std::wcerr &lt;&lt; L<span class="stringliteral">&quot;DateLastConnected not found for profile: &quot;</span> &lt;&lt; profileName &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  231</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  232</span>                        std::wcerr &lt;&lt; L<span class="stringliteral">&quot;Failed to query DateLastConnected. Error code: &quot;</span> &lt;&lt; result &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  233</span>                    }</div>
+<div class="line"><span class="lineno">  234</span>                }</div>
+<div class="line"><span class="lineno">  235</span>                <span class="keywordflow">else</span>{</div>
+<div class="line"><span class="lineno">  236</span>                    std::wcerr &lt;&lt;L<span class="stringliteral">&quot;Error&quot;</span>&lt;&lt;std::endl;</div>
+<div class="line"><span class="lineno">  237</span>                }</div>
+<div class="line"><span class="lineno">  238</span>                RegCloseKey(hSubKey);</div>
+<div class="line"><span class="lineno">  239</span>            }</div>
+<div class="line"><span class="lineno">  240</span>            index++;</div>
+<div class="line"><span class="lineno">  241</span>            cbName = 255;</div>
+<div class="line"><span class="lineno">  242</span>        }</div>
+<div class="line"><span class="lineno">  243</span>        WriteConsoleW(hConsole, L<span class="stringliteral">&quot;LastProfile Name: &quot;</span>, wcslen(L<span class="stringliteral">&quot;LastProfile Name: &quot;</span>), <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  244</span>        WriteConsoleW(hConsole, lastProfile, wcslen(lastProfile), <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  245</span>        WriteConsoleW(hConsole, <span class="stringliteral">&quot;\n&quot;</span>, 1, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  246</span>        </div>
+<div class="line"><span class="lineno">  247</span>        std::wcout &lt;&lt;L<span class="stringliteral">&quot;Last Category: &quot;</span>&lt;&lt; lastCategory &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  248</span>        RegCloseKey(hKey);</div>
+<div class="line"><span class="lineno">  249</span>        </div>
+<div class="line"><span class="lineno">  250</span>        std::ofstream myFile(<span class="stringliteral">&quot;./is_threat&quot;</span>, std::ios::out | std::ios::trunc);</div>
+<div class="line"><span class="lineno">  251</span>        <span class="keywordflow">if</span> (myFile.is_open()) {</div>
+<div class="line"><span class="lineno">  252</span>            myFile &lt;&lt; lastCategory;</div>
+<div class="line"><span class="lineno">  253</span>            myFile.close();</div>
+<div class="line"><span class="lineno">  254</span>        }</div>
+<div class="line"><span class="lineno">  255</span>        std::this_thread::sleep_for(std::chrono::seconds(10));</div>
+<div class="line"><span class="lineno">  256</span>    }</div>
+<div class="line"><span class="lineno">  257</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  258</span>}</div>
+<div class="ttc" id="acode_8cpp_html_a54c2e00181a7271993b06261a4126e5e"><div class="ttname"><a href="#a54c2e00181a7271993b06261a4126e5e">makeTimePoint</a></div><div class="ttdeci">std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day, int hour, int minute, int second)</div><div class="ttdef"><b>Определения</b> code.cpp:132</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a845888a42699a6a8f7a8bb553d1ed890" name="a845888a42699a6a8f7a8bb553d1ed890"></a>
@@ -205,7 +311,18 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Создание иконки на панели задач при запуске программы </p>
-
+<div class="fragment"><div class="line"><span class="lineno">   93</span>{</div>
+<div class="line"><span class="lineno">   94</span>    NOTIFYICONDATAW nid = {0};</div>
+<div class="line"><span class="lineno">   95</span>    nid.cbSize = <span class="keyword">sizeof</span>(NOTIFYICONDATA);</div>
+<div class="line"><span class="lineno">   96</span>    nid.hWnd = hwnd;</div>
+<div class="line"><span class="lineno">   97</span>    nid.uID = ID_TRAY_APP_ICON;</div>
+<div class="line"><span class="lineno">   98</span>    nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;</div>
+<div class="line"><span class="lineno">   99</span>    nid.uCallbackMessage = WM_TRAYNOTIFY;</div>
+<div class="line"><span class="lineno">  100</span>    nid.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MYICON));</div>
+<div class="line"><span class="lineno">  101</span>    wcscpy(nid.szTip, L<span class="stringliteral">&quot;Оповещение о небезопасном подключении к сети&quot;</span>);</div>
+<div class="line"><span class="lineno">  102</span>    Shell_NotifyIconW(NIM_ADD, &amp;nid);</div>
+<div class="line"><span class="lineno">  103</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
@@ -226,7 +343,61 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 <p>Основная функция </p>
 <p>Запускает функцию для создания иконки на панели задач. <br  />
 Запускает поток проверки подключения. </p>
-
+<div class="fragment"><div class="line"><span class="lineno">  269</span>{</div>
+<div class="line"><span class="lineno">  270</span>    <a class="code hl_function" href="#a342f2b246cde3f4ca5814a328fdae6d3">startup</a>();</div>
+<div class="line"><span class="lineno">  271</span>    </div>
+<div class="line"><span class="lineno">  272</span>    </div>
+<div class="line"><span class="lineno">  273</span>    WNDCLASSEXW wc = {0};</div>
+<div class="line"><span class="lineno">  274</span>    wc.cbSize = <span class="keyword">sizeof</span>(WNDCLASSEXW);</div>
+<div class="line"><span class="lineno">  275</span>    wc.lpfnWndProc = <a class="code hl_function" href="#a72cc05e3935370a6baf8c76645b5a43b">WndProc</a>;</div>
+<div class="line"><span class="lineno">  276</span>    wc.hInstance = GetModuleHandleW(NULL);</div>
+<div class="line"><span class="lineno">  277</span>    wc.lpszClassName = L<span class="stringliteral">&quot;TrayAppClass&quot;</span>; <span class="comment">// Wide-character string</span></div>
+<div class="line"><span class="lineno">  278</span>    RegisterClassExW(&amp;wc);</div>
+<div class="line"><span class="lineno">  279</span> </div>
+<div class="line"><span class="lineno">  280</span>    hwnd = CreateWindowW(L<span class="stringliteral">&quot;TrayAppClass&quot;</span>, L<span class="stringliteral">&quot;TrayApp&quot;</span>, WS_OVERLAPPEDWINDOW,</div>
+<div class="line"><span class="lineno">  281</span>                        0, 0, 0, 0, NULL, NULL, wc.hInstance, NULL);</div>
+<div class="line"><span class="lineno">  282</span> </div>
+<div class="line"><span class="lineno">  283</span>    <span class="keywordflow">if</span> (!hwnd) {</div>
+<div class="line"><span class="lineno">  284</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Error creating icon!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  286</span>    }</div>
+<div class="line"><span class="lineno">  287</span>        </div>
+<div class="line"><span class="lineno">  288</span> </div>
+<div class="line"><span class="lineno">  289</span>    </div>
+<div class="line"><span class="lineno">  290</span>    <a class="code hl_function" href="#a845888a42699a6a8f7a8bb553d1ed890">InitTray</a>(hwnd);</div>
+<div class="line"><span class="lineno">  291</span> </div>
+<div class="line"><span class="lineno">  292</span>    std::thread cwrThread(<a class="code hl_function" href="#a741dda0183a428292ed109cd260a34b4">check_win_registry</a>);</div>
+<div class="line"><span class="lineno">  293</span>    </div>
+<div class="line"><span class="lineno">  294</span>    MessageBoxW(NULL, </div>
+<div class="line"><span class="lineno">  295</span>               L<span class="stringliteral">&quot;Приложение запущено!&quot;</span>,  </div>
+<div class="line"><span class="lineno">  296</span>               L<span class="stringliteral">&quot;Успешно&quot;</span>,         </div>
+<div class="line"><span class="lineno">  297</span>               MB_OK | MB_ICONINFORMATION);</div>
+<div class="line"><span class="lineno">  298</span>    </div>
+<div class="line"><span class="lineno">  299</span>    </div>
+<div class="line"><span class="lineno">  300</span>    MSG msg;</div>
+<div class="line"><span class="lineno">  301</span>    <span class="keywordflow">while</span> (GetMessageW(&amp;msg, NULL, 0, 0)) {</div>
+<div class="line"><span class="lineno">  302</span>        TranslateMessage(&amp;msg);</div>
+<div class="line"><span class="lineno">  303</span>        DispatchMessage(&amp;msg);</div>
+<div class="line"><span class="lineno">  304</span>    }</div>
+<div class="line"><span class="lineno">  305</span> </div>
+<div class="line"><span class="lineno">  306</span>    <span class="comment">// Очистка</span></div>
+<div class="line"><span class="lineno">  307</span>    <a class="code hl_function" href="#a6f4c672b383ffe09c7cdafab1bcd978b">RemoveTray</a>(hwnd);</div>
+<div class="line"><span class="lineno">  308</span>    cwrThread.join();</div>
+<div class="line"><span class="lineno">  309</span>    </div>
+<div class="line"><span class="lineno">  310</span>    std::ofstream myFile(<span class="stringliteral">&quot;./is_threat&quot;</span>, std::ios::out | std::ios::trunc);</div>
+<div class="line"><span class="lineno">  311</span>    <span class="keywordflow">if</span> (myFile.is_open()) {</div>
+<div class="line"><span class="lineno">  312</span>        myFile &lt;&lt; <span class="stringliteral">&quot;1&quot;</span>;</div>
+<div class="line"><span class="lineno">  313</span>        myFile.close();</div>
+<div class="line"><span class="lineno">  314</span>    }</div>
+<div class="line"><span class="lineno">  315</span>    </div>
+<div class="line"><span class="lineno">  316</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  317</span>}</div>
+<div class="ttc" id="acode_8cpp_html_a342f2b246cde3f4ca5814a328fdae6d3"><div class="ttname"><a href="#a342f2b246cde3f4ca5814a328fdae6d3">startup</a></div><div class="ttdeci">int startup()</div><div class="ttdef"><b>Определения</b> code.cpp:29</div></div>
+<div class="ttc" id="acode_8cpp_html_a6f4c672b383ffe09c7cdafab1bcd978b"><div class="ttname"><a href="#a6f4c672b383ffe09c7cdafab1bcd978b">RemoveTray</a></div><div class="ttdeci">void RemoveTray(HWND hwnd)</div><div class="ttdef"><b>Определения</b> code.cpp:110</div></div>
+<div class="ttc" id="acode_8cpp_html_a72cc05e3935370a6baf8c76645b5a43b"><div class="ttname"><a href="#a72cc05e3935370a6baf8c76645b5a43b">WndProc</a></div><div class="ttdeci">LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)</div><div class="ttdef"><b>Определения</b> code.cpp:56</div></div>
+<div class="ttc" id="acode_8cpp_html_a741dda0183a428292ed109cd260a34b4"><div class="ttname"><a href="#a741dda0183a428292ed109cd260a34b4">check_win_registry</a></div><div class="ttdeci">int check_win_registry()</div><div class="ttdoc">Получение профиля сети</div><div class="ttdef"><b>Определения</b> code.cpp:153</div></div>
+<div class="ttc" id="acode_8cpp_html_a845888a42699a6a8f7a8bb553d1ed890"><div class="ttname"><a href="#a845888a42699a6a8f7a8bb553d1ed890">InitTray</a></div><div class="ttdeci">void InitTray(HWND hwnd)</div><div class="ttdef"><b>Определения</b> code.cpp:92</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a54c2e00181a7271993b06261a4126e5e" name="a54c2e00181a7271993b06261a4126e5e"></a>
@@ -269,7 +440,19 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 </div><div class="memdoc">
 <p>Получает на вход год, месяц, день, час, минуту и секунду в формате числа <br  />
 И конвертирует их в формат времени </p>
-
+<div class="fragment"><div class="line"><span class="lineno">  133</span>{</div>
+<div class="line"><span class="lineno">  134</span>    std::tm tm = {0};</div>
+<div class="line"><span class="lineno">  135</span>    tm.tm_year = year - 1900; <span class="comment">// Years since 1900</span></div>
+<div class="line"><span class="lineno">  136</span>    tm.tm_mon = month - 1;    <span class="comment">// Months since January (0-11)</span></div>
+<div class="line"><span class="lineno">  137</span>    tm.tm_mday = day;         <span class="comment">// Day of the month (1-31)</span></div>
+<div class="line"><span class="lineno">  138</span>    tm.tm_hour = hour;        <span class="comment">// Hours since midnight (0-23)</span></div>
+<div class="line"><span class="lineno">  139</span>    tm.tm_min = minute;       <span class="comment">// Minutes after the hour (0-59)</span></div>
+<div class="line"><span class="lineno">  140</span>    tm.tm_sec = second;       <span class="comment">// Seconds after the minute (0-60)</span></div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    std::time_t tt = std::mktime(&amp;tm);</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">return</span> std::chrono::system_clock::from_time_t(tt);</div>
+<div class="line"><span class="lineno">  144</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a6f4c672b383ffe09c7cdafab1bcd978b" name="a6f4c672b383ffe09c7cdafab1bcd978b"></a>
@@ -287,7 +470,14 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Удаление иконки на панели задач при выключении программы </p>
-
+<div class="fragment"><div class="line"><span class="lineno">  111</span>{</div>
+<div class="line"><span class="lineno">  112</span>    NOTIFYICONDATA nid = {0};</div>
+<div class="line"><span class="lineno">  113</span>    nid.cbSize = <span class="keyword">sizeof</span>(NOTIFYICONDATA);</div>
+<div class="line"><span class="lineno">  114</span>    nid.hWnd = hwnd;</div>
+<div class="line"><span class="lineno">  115</span>    nid.uID = ID_TRAY_APP_ICON;</div>
+<div class="line"><span class="lineno">  116</span>    Shell_NotifyIcon(NIM_DELETE, &amp;nid);</div>
+<div class="line"><span class="lineno">  117</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a342f2b246cde3f4ca5814a328fdae6d3" name="a342f2b246cde3f4ca5814a328fdae6d3"></a>
@@ -305,7 +495,29 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Добавляет путь к программе в список автозагрузки windows </p>
-
+<div class="fragment"><div class="line"><span class="lineno">   30</span>{</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keywordtype">wchar_t</span> path[MAX_PATH];</div>
+<div class="line"><span class="lineno">   32</span>    GetModuleFileNameW(NULL, path, MAX_PATH);</div>
+<div class="line"><span class="lineno">   33</span>    std::wstring progPath = path;</div>
+<div class="line"><span class="lineno">   34</span>    HKEY hkey = NULL;</div>
+<div class="line"><span class="lineno">   35</span>    LONG createStatus = RegCreateKeyW(HKEY_CURRENT_USER, </div>
+<div class="line"><span class="lineno">   36</span>                                     L<span class="stringliteral">&quot;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run&quot;</span>, </div>
+<div class="line"><span class="lineno">   37</span>                                     &amp;hkey);</div>
+<div class="line"><span class="lineno">   38</span>    </div>
+<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">if</span> (createStatus == ERROR_SUCCESS) {</div>
+<div class="line"><span class="lineno">   40</span>        LONG status = RegSetValueExW(hkey, </div>
+<div class="line"><span class="lineno">   41</span>                                    L<span class="stringliteral">&quot;DNAlert&quot;</span>, </div>
+<div class="line"><span class="lineno">   42</span>                                    0, </div>
+<div class="line"><span class="lineno">   43</span>                                    REG_SZ, </div>
+<div class="line"><span class="lineno">   44</span>                                    (BYTE*)progPath.c_str(), </div>
+<div class="line"><span class="lineno">   45</span>                                    (progPath.size() + 1) * <span class="keyword">sizeof</span>(<span class="keywordtype">wchar_t</span>));</div>
+<div class="line"><span class="lineno">   46</span>        </div>
+<div class="line"><span class="lineno">   47</span>        RegCloseKey(hkey);</div>
+<div class="line"><span class="lineno">   48</span>    }</div>
+<div class="line"><span class="lineno">   49</span>    </div>
+<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   51</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a72cc05e3935370a6baf8c76645b5a43b" name="a72cc05e3935370a6baf8c76645b5a43b"></a>
@@ -337,7 +549,36 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Фукция для выключения программы, если нажата кнопка "Выключить" </p>
-
+<div class="fragment"><div class="line"><span class="lineno">   57</span>{</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">switch</span> (msg) {</div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">case</span> WM_TRAYNOTIFY:</div>
+<div class="line"><span class="lineno">   60</span>            <span class="keywordflow">if</span> (lParam == WM_RBUTTONUP) {</div>
+<div class="line"><span class="lineno">   61</span>                POINT pt;</div>
+<div class="line"><span class="lineno">   62</span>                GetCursorPos(&amp;pt);</div>
+<div class="line"><span class="lineno">   63</span>                HMENU hMenu = CreatePopupMenu();</div>
+<div class="line"><span class="lineno">   64</span>                AppendMenuW(hMenu, MF_STRING, IDM_EXIT, L<span class="stringliteral">&quot;Выключить&quot;</span>);</div>
+<div class="line"><span class="lineno">   65</span>                SetForegroundWindow(hwnd);</div>
+<div class="line"><span class="lineno">   66</span>                TrackPopupMenu(hMenu, TPM_RIGHTALIGN | TPM_BOTTOMALIGN | TPM_RIGHTBUTTON,</div>
+<div class="line"><span class="lineno">   67</span>                               pt.x, pt.y, 0, hwnd, NULL);</div>
+<div class="line"><span class="lineno">   68</span>                DestroyMenu(hMenu);</div>
+<div class="line"><span class="lineno">   69</span>            }</div>
+<div class="line"><span class="lineno">   70</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   71</span>        <span class="keywordflow">case</span> WM_COMMAND:</div>
+<div class="line"><span class="lineno">   72</span>            <span class="keywordflow">if</span> (LOWORD(wParam) == IDM_EXIT) {</div>
+<div class="line"><span class="lineno">   73</span>                running = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   74</span>                PostQuitMessage(0);</div>
+<div class="line"><span class="lineno">   75</span>            }</div>
+<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">case</span> WM_DESTROY:</div>
+<div class="line"><span class="lineno">   78</span>            running = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   79</span>            PostQuitMessage(0);</div>
+<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">   82</span>            <span class="keywordflow">return</span> DefWindowProcW(hwnd, msg, wParam, lParam);</div>
+<div class="line"><span class="lineno">   83</span>    }</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   85</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

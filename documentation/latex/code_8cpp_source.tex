@@ -1,277 +1,287 @@
 \doxysection{code.\+cpp}
-\hypertarget{code_8cpp_source}{}\label{code_8cpp_source}
+\label{code_8cpp_source}\textbf{ См. документацию.}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <windows.h>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <thread>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <atomic>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <cwchar>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <cwchar>}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00008}00008\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#define\ IDI\_MYICON\ 101}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#define\ ID\_TRAY\_APP\_ICON\ 1}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#define\ WM\_TRAYNOTIFY\ (WM\_USER\ +\ 1)}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#define\ IDM\_EXIT\ 1000}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00013}00013\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00014}00014\ \textcolor{keywordtype}{int}\ startup()\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{wchar\_t}\ path[MAX\_PATH];}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00016}00016\ \ \ \ \ GetModuleFileNameW(NULL,\ path,\ MAX\_PATH);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00017}00017\ \ \ \ \ std::wstring\ progPath\ =\ path;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00018}00018\ \ \ \ \ HKEY\ hkey\ =\ NULL;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00019}00019\ \ \ \ \ LONG\ createStatus\ =\ RegCreateKeyW(HKEY\_CURRENT\_USER,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)Run"{}},\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hkey);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00022}00022\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (createStatus\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ LONG\ status\ =\ RegSetValueExW(hkey,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}DNAlert"{}},\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REG\_SZ,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BYTE*)progPath.c\_str(),\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (progPath.size()\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{wchar\_t}));}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ RegCloseKey(hkey);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00032}00032\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00033}00033\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00035}00035\ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00036}00036\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00037}00037\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00038}00038\ std::atomic<bool>\ running(\textcolor{keyword}{true});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00039}00039\ HWND\ hwnd;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00040}00040\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00041}00041\ \textcolor{comment}{//\ Обработчик\ сообщений\ окна}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00042}00042\ LRESULT\ CALLBACK\ WndProc(HWND\ hwnd,\ UINT\ msg,\ WPARAM\ wParam,\ LPARAM\ lParam)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{switch}\ (msg)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_TRAYNOTIFY:}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lParam\ ==\ WM\_RBUTTONUP)\ \{\ \textcolor{comment}{//\ Правая\ кнопка\ мыши}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ POINT\ pt;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCursorPos(\&pt);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HMENU\ hMenu\ =\ CreatePopupMenu();}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AppendMenuW(hMenu,\ MF\_STRING,\ IDM\_EXIT,\ L\textcolor{stringliteral}{"{}Выключить"{}});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetForegroundWindow(hwnd);\ \textcolor{comment}{//\ Для\ корректного\ отображения\ меню}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TrackPopupMenu(hMenu,\ TPM\_RIGHTALIGN\ |\ TPM\_BOTTOMALIGN\ |\ TPM\_RIGHTBUTTON,}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pt.x,\ pt.y,\ 0,\ hwnd,\ NULL);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DestroyMenu(hMenu);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_COMMAND:}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LOWORD(wParam)\ ==\ IDM\_EXIT)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PostQuitMessage(0);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_DESTROY:}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ PostQuitMessage(0);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DefWindowProcW(hwnd,\ msg,\ wParam,\ lParam);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00068}00068\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00070}00070\ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00071}00071\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00072}00072\ \textcolor{comment}{//\ Настройка\ системного\ трея}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00073}00073\ \textcolor{keywordtype}{void}\ InitTray(HWND\ hwnd)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00074}00074\ \ \ \ \ NOTIFYICONDATAW\ nid\ =\ \{0\};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00075}00075\ \ \ \ \ nid.cbSize\ =\ \textcolor{keyword}{sizeof}(NOTIFYICONDATA);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00076}00076\ \ \ \ \ nid.hWnd\ =\ hwnd;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00077}00077\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00078}00078\ \ \ \ \ nid.uFlags\ =\ NIF\_ICON\ |\ NIF\_MESSAGE\ |\ NIF\_TIP;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00079}00079\ \ \ \ \ nid.uCallbackMessage\ =\ WM\_TRAYNOTIFY;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00080}00080\ \ \ \ \ nid.hIcon\ =\ LoadIcon(GetModuleHandle(NULL),\ MAKEINTRESOURCE(IDI\_MYICON));}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00081}00081\ \ \ \ \ wcscpy(nid.szTip,\ L\textcolor{stringliteral}{"{}Оповещение\ о\ небезопасном\ подключении\ к\ сети"{}});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00082}00082\ \ \ \ \ Shell\_NotifyIconW(NIM\_ADD,\ \&nid);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00083}00083\ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00084}00084\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00085}00085\ \textcolor{comment}{//\ Удаление\ иконки\ из\ трея\ при\ выходе}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00086}00086\ \textcolor{keywordtype}{void}\ RemoveTray(HWND\ hwnd)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00087}00087\ \ \ \ \ NOTIFYICONDATA\ nid\ =\ \{0\};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00088}00088\ \ \ \ \ nid.cbSize\ =\ \textcolor{keyword}{sizeof}(NOTIFYICONDATA);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00089}00089\ \ \ \ \ nid.hWnd\ =\ hwnd;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00090}00090\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00091}00091\ \ \ \ \ Shell\_NotifyIcon(NIM\_DELETE,\ \&nid);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00092}00092\ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00093}00093\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00094}00094\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00095}00095\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00096}00096\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00097}00097\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00098}00098\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00099}00099\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00100}00100\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00101}00101\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00102}00102\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00103}00103\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00104}00104\ std::chrono::system\_clock::time\_point\ makeTimePoint(\textcolor{keywordtype}{int}\ year,\ \textcolor{keywordtype}{int}\ month,\ \textcolor{keywordtype}{int}\ day,\ \textcolor{keywordtype}{int}\ hour,\ \textcolor{keywordtype}{int}\ minute,\ \textcolor{keywordtype}{int}\ second)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00105}00105\ \ \ \ \ std::tm\ tm\ =\ \{0\};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00106}00106\ \ \ \ \ tm.tm\_year\ =\ year\ -\/\ 1900;\ \textcolor{comment}{//\ Years\ since\ 1900}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00107}00107\ \ \ \ \ tm.tm\_mon\ =\ month\ -\/\ 1;\ \ \ \ \textcolor{comment}{//\ Months\ since\ January\ (0-\/11)}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00108}00108\ \ \ \ \ tm.tm\_mday\ =\ day;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Day\ of\ the\ month\ (1-\/31)}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00109}00109\ \ \ \ \ tm.tm\_hour\ =\ hour;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hours\ since\ midnight\ (0-\/23)}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00110}00110\ \ \ \ \ tm.tm\_min\ =\ minute;\ \ \ \ \ \ \ \textcolor{comment}{//\ Minutes\ after\ the\ hour\ (0-\/59)}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00111}00111\ \ \ \ \ tm.tm\_sec\ =\ second;\ \ \ \ \ \ \ \textcolor{comment}{//\ Seconds\ after\ the\ minute\ (0-\/60)}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00112}00112\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00113}00113\ \ \ \ \ std::time\_t\ tt\ =\ std::mktime(\&tm);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{return}\ std::chrono::system\_clock::from\_time\_t(tt);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00115}00115\ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00116}00116\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00117}00117\ \textcolor{keywordtype}{int}\ check\_win\_registry()\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00118}00118\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00119}00119\ \ \ \ \ WCHAR\ lastProfile[255]\ =\ L\textcolor{stringliteral}{"{}None"{}};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{keyword}{auto}\ lastDate\ =\ makeTimePoint(0,0,0,0,0,0);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordtype}{int}\ lastCategory\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00122}00122\ \ \ \ \ \textcolor{keywordflow}{while}\ (running)\{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ DWORD\ index\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ WCHAR\ subKeyName[255];}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ DWORD\ cbName\ =\ 255;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ month;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hour;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ minute;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ second;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ HKEY\ hKey;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ LONG\ result\ =\ RegOpenKeyExW(HKEY\_LOCAL\_MACHINE,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\ NT\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)NetworkList\(\backslash\)\(\backslash\)Profiles"{}},\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KEY\_READ,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hKey);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ open\ registry\ key.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout<<RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)<<std::endl;}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ HKEY\ hSubKey;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegOpenKeyExW(hKey,\ subKeyName,\ 0,\ KEY\_READ,\ \&hSubKey);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WCHAR\ profileName[255];}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ cbData\ =\ \textcolor{keyword}{sizeof}(profileName);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}ProfileName"{}},\ NULL,\ NULL,\ (LPBYTE)profileName,\ \&cbData);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ type;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cbData\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ \&type,\ NULL,\ \&cbData);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS\ \&\&\ type\ ==\ REG\_BINARY)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00160}00160\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BYTE*\ dateData\ =\ \textcolor{keyword}{new}\ BYTE[cbData];}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ NULL,\ dateData,\ \&cbData);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ year\ =\ int(dateData[0]+dateData[1]*256);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month\ =\ int(dateData[2]+dateData[3]*256);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ int(dateData[6]+dateData[7]*256);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hour\ =\ int(dateData[8]+dateData[9]*256);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minute\ =\ int(dateData[10]+dateData[11]*256);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\ =\ int(dateData[12]+dateData[13]*256);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ date\ =\ makeTimePoint(year,month,day,hour,minute,second);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ category;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}Category"{}},\ NULL,\ \&type,\ (LPBYTE)\&category,\ \&cbData);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (date>lastDate\ or\ (wcscmp(profileName,lastProfile)==0\ and\ category!=lastCategory))\{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastDate=date;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastCategory=category;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}Changed\ Profile\ Name:\ "{}},\ 22,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ profileName,\ wcslen(profileName),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00183}00183\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (category==0)\{\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MessageBoxW(NULL,\ L\textcolor{stringliteral}{"{}Вы\ подключены\ к\ небезопасной\ сети!"{}},\ \ L\textcolor{stringliteral}{"{}Внимание"{}},\ MB\_OK\ |\ MB\_ICONINFORMATION);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wcsncpy(lastProfile,\ profileName,\ 255);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ read\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ dateData;\ \ \textcolor{comment}{//\ Clean\ up\ allocated\ memory}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_FILE\_NOT\_FOUND)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}DateLastConnected\ not\ found\ for\ profile:\ "{}}\ <<\ profileName\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ query\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<L\textcolor{stringliteral}{"{}Error"{}}<<std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegCloseKey(hSubKey);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ index++;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ cbName\ =\ 255;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}},\ wcslen(L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}}),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ lastProfile,\ wcslen(lastProfile),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ std::wcout\ <<L\textcolor{stringliteral}{"{}Last\ Category:\ "{}}<<\ lastCategory\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ RegCloseKey(hKey);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ myFile\ <<\ lastCategory;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ myFile.close();}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(2));}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00220}00220\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00221}00221\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00222}00222\ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00223}00223\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00225}00225\ \textcolor{keywordtype}{int}\ main()\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00226}00226\ \ \ \ \ startup();}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00227}00227\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00228}00228\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00229}00229\ \ \ \ \ WNDCLASSEXW\ wc\ =\ \{0\};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00230}00230\ \ \ \ \ wc.cbSize\ =\ \textcolor{keyword}{sizeof}(WNDCLASSEXW);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00231}00231\ \ \ \ \ wc.lpfnWndProc\ =\ WndProc;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00232}00232\ \ \ \ \ wc.hInstance\ =\ GetModuleHandleW(NULL);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00233}00233\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ \textcolor{comment}{//\ Wide-\/character\ string}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00234}00234\ \ \ \ \ RegisterClassExW(\&wc);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00235}00235\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00236}00236\ \ \ \ \ hwnd\ =\ CreateWindowW(L\textcolor{stringliteral}{"{}TrayAppClass"{}},\ L\textcolor{stringliteral}{"{}TrayApp"{}},\ WS\_OVERLAPPEDWINDOW,}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ NULL,\ NULL,\ wc.hInstance,\ NULL);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00238}00238\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00239}00239\ \ \ \ \ \textcolor{keywordflow}{if}\ (!hwnd)\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ creating\ icon!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00242}00242\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00244}00244\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00245}00245\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00246}00246\ \ \ \ \ InitTray(hwnd);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00247}00247\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00248}00248\ \ \ \ \ std::thread\ cwrThread(check\_win\_registry);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00249}00249\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00250}00250\ \ \ \ \ MessageBoxW(NULL,\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Приложение\ запущено!"{}},\ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Успешно"{}},\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONINFORMATION);\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00254}00254\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00255}00255\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00256}00256\ \ \ \ \ MSG\ msg;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00257}00257\ \ \ \ \ \textcolor{keywordflow}{while}\ (GetMessageW(\&msg,\ NULL,\ 0,\ 0))\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ TranslateMessage(\&msg);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ DispatchMessage(\&msg);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00260}00260\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00261}00261\ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00262}00262\ \ \ \ \ \textcolor{comment}{//\ Очистка}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00263}00263\ \ \ \ \ RemoveTray(hwnd);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00264}00264\ \ \ \ \ cwrThread.join();}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00265}00265\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00266}00266\ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00267}00267\ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ myFile\ <<\ \textcolor{stringliteral}{"{}1"{}};}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ myFile.close();}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00270}00270\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00271}00271\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00272}00272\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{code_8cpp_source_l00273}00273\ \}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cwchar>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cwchar>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ IDI\_MYICON\ 101}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ ID\_TRAY\_APP\_ICON\ 1}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ WM\_TRAYNOTIFY\ (WM\_USER\ +\ 1)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ IDM\_EXIT\ 1000}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ std::atomic<bool>\ running(\textcolor{keyword}{true});}
+\DoxyCodeLine{00015\ HWND\ hwnd;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{int}\ startup()}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{wchar\_t}\ path[MAX\_PATH];}
+\DoxyCodeLine{00032\ \ \ \ \ GetModuleFileNameW(NULL,\ path,\ MAX\_PATH);}
+\DoxyCodeLine{00033\ \ \ \ \ std::wstring\ progPath\ =\ path;}
+\DoxyCodeLine{00034\ \ \ \ \ HKEY\ hkey\ =\ NULL;}
+\DoxyCodeLine{00035\ \ \ \ \ LONG\ createStatus\ =\ RegCreateKeyW(HKEY\_CURRENT\_USER,\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)Run"{}},\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hkey);}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (createStatus\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ LONG\ status\ =\ RegSetValueExW(hkey,\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}DNAlert"{}},\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REG\_SZ,\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (BYTE*)progPath.c\_str(),\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (progPath.size()\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{wchar\_t}));}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ RegCloseKey(hkey);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ \ }
+\DoxyCodeLine{00056\ LRESULT\ CALLBACK\ WndProc(HWND\ hwnd,\ UINT\ msg,\ WPARAM\ wParam,\ LPARAM\ lParam)\ }
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{switch}\ (msg)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_TRAYNOTIFY:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lParam\ ==\ WM\_RBUTTONUP)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ POINT\ pt;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCursorPos(\&pt);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HMENU\ hMenu\ =\ CreatePopupMenu();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AppendMenuW(hMenu,\ MF\_STRING,\ IDM\_EXIT,\ L\textcolor{stringliteral}{"{}Выключить"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetForegroundWindow(hwnd);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TrackPopupMenu(hMenu,\ TPM\_RIGHTALIGN\ |\ TPM\_BOTTOMALIGN\ |\ TPM\_RIGHTBUTTON,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pt.x,\ pt.y,\ 0,\ hwnd,\ NULL);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DestroyMenu(hMenu);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_COMMAND:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LOWORD(wParam)\ ==\ IDM\_EXIT)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PostQuitMessage(0);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_DESTROY:}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ PostQuitMessage(0);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DefWindowProcW(hwnd,\ msg,\ wParam,\ lParam);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ InitTray(HWND\ hwnd)\ }
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ NOTIFYICONDATAW\ nid\ =\ \{0\};}
+\DoxyCodeLine{00095\ \ \ \ \ nid.cbSize\ =\ \textcolor{keyword}{sizeof}(NOTIFYICONDATA);}
+\DoxyCodeLine{00096\ \ \ \ \ nid.hWnd\ =\ hwnd;}
+\DoxyCodeLine{00097\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
+\DoxyCodeLine{00098\ \ \ \ \ nid.uFlags\ =\ NIF\_ICON\ |\ NIF\_MESSAGE\ |\ NIF\_TIP;}
+\DoxyCodeLine{00099\ \ \ \ \ nid.uCallbackMessage\ =\ WM\_TRAYNOTIFY;}
+\DoxyCodeLine{00100\ \ \ \ \ nid.hIcon\ =\ LoadIcon(GetModuleHandle(NULL),\ MAKEINTRESOURCE(IDI\_MYICON));}
+\DoxyCodeLine{00101\ \ \ \ \ wcscpy(nid.szTip,\ L\textcolor{stringliteral}{"{}Оповещение\ о\ небезопасном\ подключении\ к\ сети"{}});}
+\DoxyCodeLine{00102\ \ \ \ \ Shell\_NotifyIconW(NIM\_ADD,\ \&nid);}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ RemoveTray(HWND\ hwnd)\ }
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ NOTIFYICONDATA\ nid\ =\ \{0\};}
+\DoxyCodeLine{00113\ \ \ \ \ nid.cbSize\ =\ \textcolor{keyword}{sizeof}(NOTIFYICONDATA);}
+\DoxyCodeLine{00114\ \ \ \ \ nid.hWnd\ =\ hwnd;}
+\DoxyCodeLine{00115\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
+\DoxyCodeLine{00116\ \ \ \ \ Shell\_NotifyIcon(NIM\_DELETE,\ \&nid);}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ }
+\DoxyCodeLine{00132\ std::chrono::system\_clock::time\_point\ makeTimePoint(\textcolor{keywordtype}{int}\ year,\ \textcolor{keywordtype}{int}\ month,\ \textcolor{keywordtype}{int}\ day,\ \textcolor{keywordtype}{int}\ hour,\ \textcolor{keywordtype}{int}\ minute,\ \textcolor{keywordtype}{int}\ second)\ }
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ std::tm\ tm\ =\ \{0\};}
+\DoxyCodeLine{00135\ \ \ \ \ tm.tm\_year\ =\ year\ -\/\ 1900;\ \textcolor{comment}{//\ Years\ since\ 1900}}
+\DoxyCodeLine{00136\ \ \ \ \ tm.tm\_mon\ =\ month\ -\/\ 1;\ \ \ \ \textcolor{comment}{//\ Months\ since\ January\ (0-\/11)}}
+\DoxyCodeLine{00137\ \ \ \ \ tm.tm\_mday\ =\ day;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Day\ of\ the\ month\ (1-\/31)}}
+\DoxyCodeLine{00138\ \ \ \ \ tm.tm\_hour\ =\ hour;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hours\ since\ midnight\ (0-\/23)}}
+\DoxyCodeLine{00139\ \ \ \ \ tm.tm\_min\ =\ minute;\ \ \ \ \ \ \ \textcolor{comment}{//\ Minutes\ after\ the\ hour\ (0-\/59)}}
+\DoxyCodeLine{00140\ \ \ \ \ tm.tm\_sec\ =\ second;\ \ \ \ \ \ \ \textcolor{comment}{//\ Seconds\ after\ the\ minute\ (0-\/60)}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ std::time\_t\ tt\ =\ std::mktime(\&tm);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ std::chrono::system\_clock::from\_time\_t(tt);}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{int}\ check\_win\_registry()\ }
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00156\ \ \ \ \ WCHAR\ lastProfile[255]\ =\ L\textcolor{stringliteral}{"{}None"{}};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{auto}\ lastDate\ =\ makeTimePoint(0,0,0,0,0,0);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{int}\ lastCategory\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{while}\ (running)\{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ DWORD\ index\ =\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ WCHAR\ subKeyName[255];}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ DWORD\ cbName\ =\ 255;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ month;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hour;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ minute;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ second;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ HKEY\ hKey;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ LONG\ result\ =\ RegOpenKeyExW(HKEY\_LOCAL\_MACHINE,\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\ NT\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)NetworkList\(\backslash\)\(\backslash\)Profiles"{}},\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KEY\_READ,\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hKey);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ open\ registry\ key.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout<<RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)<<std::endl;}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ HKEY\ hSubKey;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegOpenKeyExW(hKey,\ subKeyName,\ 0,\ KEY\_READ,\ \&hSubKey);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WCHAR\ profileName[255];}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ cbData\ =\ \textcolor{keyword}{sizeof}(profileName);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}ProfileName"{}},\ NULL,\ NULL,\ (LPBYTE)profileName,\ \&cbData);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ type;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cbData\ =\ 0;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ \&type,\ NULL,\ \&cbData);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS\ \&\&\ type\ ==\ REG\_BINARY)\ \{}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BYTE*\ dateData\ =\ \textcolor{keyword}{new}\ BYTE[cbData];}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ NULL,\ dateData,\ \&cbData);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ year\ =\ int(dateData[0]+dateData[1]*256);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month\ =\ int(dateData[2]+dateData[3]*256);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ int(dateData[6]+dateData[7]*256);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hour\ =\ int(dateData[8]+dateData[9]*256);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minute\ =\ int(dateData[10]+dateData[11]*256);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\ =\ int(dateData[12]+dateData[13]*256);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ date\ =\ makeTimePoint(year,month,day,hour,minute,second);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ category;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}Category"{}},\ NULL,\ \&type,\ (LPBYTE)\&category,\ \&cbData);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (date>lastDate\ or\ (wcscmp(profileName,lastProfile)==0\ and\ category!=lastCategory))\{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastDate=date;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastCategory=category;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}Changed\ Profile\ Name:\ "{}},\ 22,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ profileName,\ wcslen(profileName),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (category==0)\{\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MessageBoxW(NULL,\ L\textcolor{stringliteral}{"{}Вы\ подключены\ к\ небезопасной\ сети!"{}},\ \ L\textcolor{stringliteral}{"{}Внимание"{}},\ MB\_OK\ |\ MB\_ICONINFORMATION);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wcsncpy(lastProfile,\ profileName,\ 255);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ read\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_FILE\_NOT\_FOUND)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}DateLastConnected\ not\ found\ for\ profile:\ "{}}\ <<\ profileName\ <<\ std::endl;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ query\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<L\textcolor{stringliteral}{"{}Error"{}}<<std::endl;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegCloseKey(hSubKey);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ cbName\ =\ 255;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}},\ wcslen(L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}}),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ lastProfile,\ wcslen(lastProfile),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ std::wcout\ <<L\textcolor{stringliteral}{"{}Last\ Category:\ "{}}<<\ lastCategory\ <<\ std::endl;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ RegCloseKey(hKey);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ myFile\ <<\ lastCategory;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ myFile.close();}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(10));}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00258\ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00268\ \textcolor{keywordtype}{int}\ main()\ }
+\DoxyCodeLine{00269\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ startup();}
+\DoxyCodeLine{00271\ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ WNDCLASSEXW\ wc\ =\ \{0\};}
+\DoxyCodeLine{00274\ \ \ \ \ wc.cbSize\ =\ \textcolor{keyword}{sizeof}(WNDCLASSEXW);}
+\DoxyCodeLine{00275\ \ \ \ \ wc.lpfnWndProc\ =\ WndProc;}
+\DoxyCodeLine{00276\ \ \ \ \ wc.hInstance\ =\ GetModuleHandleW(NULL);}
+\DoxyCodeLine{00277\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ \textcolor{comment}{//\ Wide-\/character\ string}}
+\DoxyCodeLine{00278\ \ \ \ \ RegisterClassExW(\&wc);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ hwnd\ =\ CreateWindowW(L\textcolor{stringliteral}{"{}TrayAppClass"{}},\ L\textcolor{stringliteral}{"{}TrayApp"{}},\ WS\_OVERLAPPEDWINDOW,}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ NULL,\ NULL,\ wc.hInstance,\ NULL);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (!hwnd)\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ creating\ icon!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ }
+\DoxyCodeLine{00290\ \ \ \ \ InitTray(hwnd);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ std::thread\ cwrThread(check\_win\_registry);}
+\DoxyCodeLine{00293\ \ \ \ \ }
+\DoxyCodeLine{00294\ \ \ \ \ MessageBoxW(NULL,\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Приложение\ запущено!"{}},\ \ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Успешно"{}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONINFORMATION);}
+\DoxyCodeLine{00298\ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ MSG\ msg;}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{while}\ (GetMessageW(\&msg,\ NULL,\ 0,\ 0))\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ TranslateMessage(\&msg);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ DispatchMessage(\&msg);}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Очистка}}
+\DoxyCodeLine{00307\ \ \ \ \ RemoveTray(hwnd);}
+\DoxyCodeLine{00308\ \ \ \ \ cwrThread.join();}
+\DoxyCodeLine{00309\ \ \ \ \ }
+\DoxyCodeLine{00310\ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ myFile\ <<\ \textcolor{stringliteral}{"{}1"{}};}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ myFile.close();}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00317\ \}}
 
 \end{DoxyCode}

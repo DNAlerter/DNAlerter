@@ -1,0 +1,16 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {russian}{}\relax 
+\contentsline {chapter}{\numberline {1}DNAlerter}{1}{}%
+\contentsline {chapter}{\numberline {2}Список файлов}{3}{}%
+\contentsline {section}{\numberline {2.1}Файлы}{3}{}%
+\contentsline {chapter}{\numberline {3}Файлы}{5}{}%
+\contentsline {section}{\numberline {3.1}Файл code.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{5}{}%
+\contentsline {subsection}{\numberline {3.1.1}Подробное описание}{6}{}%
+\contentsline {subsection}{\numberline {3.1.2}Функции}{6}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}check\_win\_registry()}{6}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}InitTray()}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}main()}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.4}makeTimePoint()}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.5}RemoveTray()}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.6}startup()}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.7}WndProc()}{9}{}%
