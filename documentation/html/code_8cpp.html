@@ -217,7 +217,7 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 <div class="line"><span class="lineno">  181</span>            std::wcerr &lt;&lt; L<span class="stringliteral">&quot;Failed to open registry key. Error code: &quot;</span> &lt;&lt; result &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  182</span>            <span class="keywordflow">return</span> 1;</div>
 <div class="line"><span class="lineno">  183</span>        }</div>
-<div class="line"><span class="lineno">  184</span>        <span class="comment">//std::cout&lt;&lt;RegEnumKeyExW(hKey, index, subKeyName, &amp;cbName, NULL, NULL, NULL, NULL)&lt;&lt;std::endl;</span></div>
+<div class="line"><span class="lineno">  184</span>        </div>
 <div class="line"><span class="lineno">  185</span>        <span class="keywordflow">while</span> (RegEnumKeyExW(hKey, index, subKeyName, &amp;cbName, NULL, NULL, NULL, NULL) == ERROR_SUCCESS) {</div>
 <div class="line"><span class="lineno">  186</span>            HKEY hSubKey;</div>
 <div class="line"><span class="lineno">  187</span>            result = RegOpenKeyExW(hKey, subKeyName, 0, KEY_READ, &amp;hSubKey);</div>
@@ -351,7 +351,7 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 <div class="line"><span class="lineno">  274</span>    wc.cbSize = <span class="keyword">sizeof</span>(WNDCLASSEXW);</div>
 <div class="line"><span class="lineno">  275</span>    wc.lpfnWndProc = <a class="code hl_function" href="#a72cc05e3935370a6baf8c76645b5a43b">WndProc</a>;</div>
 <div class="line"><span class="lineno">  276</span>    wc.hInstance = GetModuleHandleW(NULL);</div>
-<div class="line"><span class="lineno">  277</span>    wc.lpszClassName = L<span class="stringliteral">&quot;TrayAppClass&quot;</span>; <span class="comment">// Wide-character string</span></div>
+<div class="line"><span class="lineno">  277</span>    wc.lpszClassName = L<span class="stringliteral">&quot;TrayAppClass&quot;</span>; </div>
 <div class="line"><span class="lineno">  278</span>    RegisterClassExW(&amp;wc);</div>
 <div class="line"><span class="lineno">  279</span> </div>
 <div class="line"><span class="lineno">  280</span>    hwnd = CreateWindowW(L<span class="stringliteral">&quot;TrayAppClass&quot;</span>, L<span class="stringliteral">&quot;TrayApp&quot;</span>, WS_OVERLAPPEDWINDOW,</div>
@@ -380,7 +380,7 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 <div class="line"><span class="lineno">  303</span>        DispatchMessage(&amp;msg);</div>
 <div class="line"><span class="lineno">  304</span>    }</div>
 <div class="line"><span class="lineno">  305</span> </div>
-<div class="line"><span class="lineno">  306</span>    <span class="comment">// Очистка</span></div>
+<div class="line"><span class="lineno">  306</span>    </div>
 <div class="line"><span class="lineno">  307</span>    <a class="code hl_function" href="#a6f4c672b383ffe09c7cdafab1bcd978b">RemoveTray</a>(hwnd);</div>
 <div class="line"><span class="lineno">  308</span>    cwrThread.join();</div>
 <div class="line"><span class="lineno">  309</span>    </div>
@@ -442,12 +442,12 @@ HWND&#160;</td><td class="memItemRight" valign="bottom"><b>hwnd</b></td></tr>
 И конвертирует их в формат времени </p>
 <div class="fragment"><div class="line"><span class="lineno">  133</span>{</div>
 <div class="line"><span class="lineno">  134</span>    std::tm tm = {0};</div>
-<div class="line"><span class="lineno">  135</span>    tm.tm_year = year - 1900; <span class="comment">// Years since 1900</span></div>
-<div class="line"><span class="lineno">  136</span>    tm.tm_mon = month - 1;    <span class="comment">// Months since January (0-11)</span></div>
-<div class="line"><span class="lineno">  137</span>    tm.tm_mday = day;         <span class="comment">// Day of the month (1-31)</span></div>
-<div class="line"><span class="lineno">  138</span>    tm.tm_hour = hour;        <span class="comment">// Hours since midnight (0-23)</span></div>
-<div class="line"><span class="lineno">  139</span>    tm.tm_min = minute;       <span class="comment">// Minutes after the hour (0-59)</span></div>
-<div class="line"><span class="lineno">  140</span>    tm.tm_sec = second;       <span class="comment">// Seconds after the minute (0-60)</span></div>
+<div class="line"><span class="lineno">  135</span>    tm.tm_year = year - 1900;</div>
+<div class="line"><span class="lineno">  136</span>    tm.tm_mon = month - 1;</div>
+<div class="line"><span class="lineno">  137</span>    tm.tm_mday = day;</div>
+<div class="line"><span class="lineno">  138</span>    tm.tm_hour = hour;</div>
+<div class="line"><span class="lineno">  139</span>    tm.tm_min = minute;</div>
+<div class="line"><span class="lineno">  140</span>    tm.tm_sec = second;</div>
 <div class="line"><span class="lineno">  141</span> </div>
 <div class="line"><span class="lineno">  142</span>    std::time_t tt = std::mktime(&amp;tm);</div>
 <div class="line"><span class="lineno">  143</span>    <span class="keywordflow">return</span> std::chrono::system_clock::from_time_t(tt);</div>

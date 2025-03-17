@@ -105,7 +105,7 @@ int check\+\_\+win\+\_\+registry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapt
 \DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ open\ registry\ key.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
 \DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
 \DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout<<RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)<<std::endl;}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)\ ==\ ERROR\_SUCCESS)\ \{}
 \DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ HKEY\ hSubKey;}
 \DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegOpenKeyExW(hKey,\ subKeyName,\ 0,\ KEY\_READ,\ \&hSubKey);}
@@ -224,7 +224,7 @@ int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 \DoxyCodeLine{00274\ \ \ \ \ wc.cbSize\ =\ \textcolor{keyword}{sizeof}(WNDCLASSEXW);}
 \DoxyCodeLine{00275\ \ \ \ \ wc.lpfnWndProc\ =\ WndProc;}
 \DoxyCodeLine{00276\ \ \ \ \ wc.hInstance\ =\ GetModuleHandleW(NULL);}
-\DoxyCodeLine{00277\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ \textcolor{comment}{//\ Wide-\/character\ string}}
+\DoxyCodeLine{00277\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ }
 \DoxyCodeLine{00278\ \ \ \ \ RegisterClassExW(\&wc);}
 \DoxyCodeLine{00279\ }
 \DoxyCodeLine{00280\ \ \ \ \ hwnd\ =\ CreateWindowW(L\textcolor{stringliteral}{"{}TrayAppClass"{}},\ L\textcolor{stringliteral}{"{}TrayApp"{}},\ WS\_OVERLAPPEDWINDOW,}
@@ -253,7 +253,7 @@ int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 \DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ DispatchMessage(\&msg);}
 \DoxyCodeLine{00304\ \ \ \ \ \}}
 \DoxyCodeLine{00305\ }
-\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Очистка}}
+\DoxyCodeLine{00306\ \ \ \ \ }
 \DoxyCodeLine{00307\ \ \ \ \ RemoveTray(hwnd);}
 \DoxyCodeLine{00308\ \ \ \ \ cwrThread.join();}
 \DoxyCodeLine{00309\ \ \ \ \ }
@@ -278,12 +278,12 @@ std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point make\+Time\+Point (\begin{
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00133\ \{}
 \DoxyCodeLine{00134\ \ \ \ \ std::tm\ tm\ =\ \{0\};}
-\DoxyCodeLine{00135\ \ \ \ \ tm.tm\_year\ =\ year\ -\/\ 1900;\ \textcolor{comment}{//\ Years\ since\ 1900}}
-\DoxyCodeLine{00136\ \ \ \ \ tm.tm\_mon\ =\ month\ -\/\ 1;\ \ \ \ \textcolor{comment}{//\ Months\ since\ January\ (0-\/11)}}
-\DoxyCodeLine{00137\ \ \ \ \ tm.tm\_mday\ =\ day;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Day\ of\ the\ month\ (1-\/31)}}
-\DoxyCodeLine{00138\ \ \ \ \ tm.tm\_hour\ =\ hour;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hours\ since\ midnight\ (0-\/23)}}
-\DoxyCodeLine{00139\ \ \ \ \ tm.tm\_min\ =\ minute;\ \ \ \ \ \ \ \textcolor{comment}{//\ Minutes\ after\ the\ hour\ (0-\/59)}}
-\DoxyCodeLine{00140\ \ \ \ \ tm.tm\_sec\ =\ second;\ \ \ \ \ \ \ \textcolor{comment}{//\ Seconds\ after\ the\ minute\ (0-\/60)}}
+\DoxyCodeLine{00135\ \ \ \ \ tm.tm\_year\ =\ year\ -\/\ 1900;}
+\DoxyCodeLine{00136\ \ \ \ \ tm.tm\_mon\ =\ month\ -\/\ 1;}
+\DoxyCodeLine{00137\ \ \ \ \ tm.tm\_mday\ =\ day;}
+\DoxyCodeLine{00138\ \ \ \ \ tm.tm\_hour\ =\ hour;}
+\DoxyCodeLine{00139\ \ \ \ \ tm.tm\_min\ =\ minute;}
+\DoxyCodeLine{00140\ \ \ \ \ tm.tm\_sec\ =\ second;}
 \DoxyCodeLine{00141\ }
 \DoxyCodeLine{00142\ \ \ \ \ std::time\_t\ tt\ =\ std::mktime(\&tm);}
 \DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ std::chrono::system\_clock::from\_time\_t(tt);}

@@ -132,12 +132,12 @@ void RemoveTray(HWND hwnd)
 std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day, int hour, int minute, int second) 
 {
     std::tm tm = {0};
-    tm.tm_year = year - 1900; // Years since 1900
-    tm.tm_mon = month - 1;    // Months since January (0-11)
-    tm.tm_mday = day;         // Day of the month (1-31)
-    tm.tm_hour = hour;        // Hours since midnight (0-23)
-    tm.tm_min = minute;       // Minutes after the hour (0-59)
-    tm.tm_sec = second;       // Seconds after the minute (0-60)
+    tm.tm_year = year - 1900;
+    tm.tm_mon = month - 1;
+    tm.tm_mday = day;
+    tm.tm_hour = hour;
+    tm.tm_min = minute;
+    tm.tm_sec = second;
 
     std::time_t tt = std::mktime(&tm);
     return std::chrono::system_clock::from_time_t(tt);
@@ -181,7 +181,7 @@ int check_win_registry()
 			std::wcerr << L"Failed to open registry key. Error code: " << result << std::endl;
 			return 1;
 		}
-		//std::cout<<RegEnumKeyExW(hKey, index, subKeyName, &cbName, NULL, NULL, NULL, NULL)<<std::endl;
+		
 		while (RegEnumKeyExW(hKey, index, subKeyName, &cbName, NULL, NULL, NULL, NULL) == ERROR_SUCCESS) {
 			HKEY hSubKey;
 			result = RegOpenKeyExW(hKey, subKeyName, 0, KEY_READ, &hSubKey);
@@ -274,7 +274,7 @@ int main()
     wc.cbSize = sizeof(WNDCLASSEXW);
     wc.lpfnWndProc = WndProc;
     wc.hInstance = GetModuleHandleW(NULL);
-    wc.lpszClassName = L"TrayAppClass"; // Wide-character string
+    wc.lpszClassName = L"TrayAppClass"; 
     RegisterClassExW(&wc);
 
     hwnd = CreateWindowW(L"TrayAppClass", L"TrayApp", WS_OVERLAPPEDWINDOW,
@@ -303,7 +303,7 @@ int main()
         DispatchMessage(&msg);
     }
 
-    // Очистка
+    
     RemoveTray(hwnd);
     cwrThread.join();
 	
