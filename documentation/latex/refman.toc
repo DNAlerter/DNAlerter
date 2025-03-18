@@ -12,5 +12,6 @@
 \contentsline {subsubsection}{\numberline {3.1.2.3}main()}{8}{}%
 \contentsline {subsubsection}{\numberline {3.1.2.4}makeTimePoint()}{8}{}%
 \contentsline {subsubsection}{\numberline {3.1.2.5}RemoveTray()}{9}{}%
-\contentsline {subsubsection}{\numberline {3.1.2.6}startup()}{9}{}%
-\contentsline {subsubsection}{\numberline {3.1.2.7}WndProc()}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.6}ShowUnsafeNetworkWarning()}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.7}startup()}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.8}WndProc()}{10}{}%

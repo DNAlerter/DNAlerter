@@ -10,6 +10,8 @@
 \indexentry{makeTimePoint@{makeTimePoint}!code.cpp@{code.cpp}}{8}
 \indexentry{code.cpp@{code.cpp}!RemoveTray@{RemoveTray}}{9}
 \indexentry{RemoveTray@{RemoveTray}!code.cpp@{code.cpp}}{9}
+\indexentry{code.cpp@{code.cpp}!ShowUnsafeNetworkWarning@{ShowUnsafeNetworkWarning}}{9}
+\indexentry{ShowUnsafeNetworkWarning@{ShowUnsafeNetworkWarning}!code.cpp@{code.cpp}}{9}
 \indexentry{code.cpp@{code.cpp}!startup@{startup}}{9}
 \indexentry{startup@{startup}!code.cpp@{code.cpp}}{9}
 \indexentry{code.cpp@{code.cpp}!WndProc@{WndProc}}{9}

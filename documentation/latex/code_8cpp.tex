@@ -42,6 +42,8 @@ void \textbf{ Remove\+Tray} (HWND hwnd)
 \item 
 std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \textbf{ make\+Time\+Point} (int year, int month, int day, int hour, int minute, int second)
 \item 
+DWORD WINAPI \textbf{ Show\+Unsafe\+Network\+Warning} (LPVOID lp\+Param)
+\begin{DoxyCompactList}\small\item\em Отображение Message\+Box. \end{DoxyCompactList}\item 
 int \textbf{ check\+\_\+win\+\_\+registry} ()
 \begin{DoxyCompactList}\small\item\em Получение профиля сети \end{DoxyCompactList}\item 
 int \textbf{ main} ()
@@ -75,111 +77,110 @@ int check\+\_\+win\+\_\+registry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapt
 Записывает в файл is\+\_\+threat тип сети ~\newline
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00154\ \{}
-\DoxyCodeLine{00155\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
-\DoxyCodeLine{00156\ \ \ \ \ WCHAR\ lastProfile[255]\ =\ L\textcolor{stringliteral}{"{}None"{}};}
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{auto}\ lastDate\ =\ makeTimePoint(0,0,0,0,0,0);}
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{int}\ lastCategory\ =\ 0;}
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{while}\ (running)\{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ DWORD\ index\ =\ 0;}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ WCHAR\ subKeyName[255];}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ DWORD\ cbName\ =\ 255;}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year;}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ month;}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day;}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hour;}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ minute;}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ second;}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ HKEY\ hKey;}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ LONG\ result\ =\ RegOpenKeyExW(HKEY\_LOCAL\_MACHINE,\ }
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\ NT\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)NetworkList\(\backslash\)\(\backslash\)Profiles"{}},\ }
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KEY\_READ,\ }
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hKey);}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ open\ registry\ key.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00168\ \ \ \ \ WCHAR\ lastProfile[255]\ =\ L\textcolor{stringliteral}{"{}None"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{auto}\ lastDate\ =\ makeTimePoint(0,0,0,0,0,0);}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{int}\ lastCategory\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{while}\ (running)\{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ DWORD\ index\ =\ 0;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ WCHAR\ subKeyName[255];}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ DWORD\ cbName\ =\ 255;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ month;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hour;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ minute;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ second;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ HKEY\ hSubKey;}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegOpenKeyExW(hKey,\ subKeyName,\ 0,\ KEY\_READ,\ \&hSubKey);}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WCHAR\ profileName[255];}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ cbData\ =\ \textcolor{keyword}{sizeof}(profileName);}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}ProfileName"{}},\ NULL,\ NULL,\ (LPBYTE)profileName,\ \&cbData);}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ type;}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cbData\ =\ 0;}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ \&type,\ NULL,\ \&cbData);}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS\ \&\&\ type\ ==\ REG\_BINARY)\ \{}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BYTE*\ dateData\ =\ \textcolor{keyword}{new}\ BYTE[cbData];}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ NULL,\ dateData,\ \&cbData);}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ year\ =\ int(dateData[0]+dateData[1]*256);}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month\ =\ int(dateData[2]+dateData[3]*256);}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ int(dateData[6]+dateData[7]*256);}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hour\ =\ int(dateData[8]+dateData[9]*256);}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minute\ =\ int(dateData[10]+dateData[11]*256);}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\ =\ int(dateData[12]+dateData[13]*256);}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ date\ =\ makeTimePoint(year,month,day,hour,minute,second);}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ category;}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}Category"{}},\ NULL,\ \&type,\ (LPBYTE)\&category,\ \&cbData);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ HKEY\ hKey;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ LONG\ result\ =\ RegOpenKeyExW(HKEY\_LOCAL\_MACHINE,\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}SOFTWARE\(\backslash\)\(\backslash\)Microsoft\(\backslash\)\(\backslash\)Windows\ NT\(\backslash\)\(\backslash\)CurrentVersion\(\backslash\)\(\backslash\)NetworkList\(\backslash\)\(\backslash\)Profiles"{}},\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KEY\_READ,\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&hKey);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ open\ registry\ key.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (RegEnumKeyExW(hKey,\ index,\ subKeyName,\ \&cbName,\ NULL,\ NULL,\ NULL,\ NULL)\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ HKEY\ hSubKey;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegOpenKeyExW(hKey,\ subKeyName,\ 0,\ KEY\_READ,\ \&hSubKey);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WCHAR\ profileName[255];}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ cbData\ =\ \textcolor{keyword}{sizeof}(profileName);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}ProfileName"{}},\ NULL,\ NULL,\ (LPBYTE)profileName,\ \&cbData);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ type;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cbData\ =\ 0;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ \&type,\ NULL,\ \&cbData);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS\ \&\&\ type\ ==\ REG\_BINARY)\ \{}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BYTE*\ dateData\ =\ \textcolor{keyword}{new}\ BYTE[cbData];}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}DateLastConnected"{}},\ NULL,\ NULL,\ dateData,\ \&cbData);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_SUCCESS)\ \{}
 \DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (date>lastDate\ or\ (wcscmp(profileName,lastProfile)==0\ and\ category!=lastCategory))\{}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastDate=date;}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastCategory=category;}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}Changed\ Profile\ Name:\ "{}},\ 22,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ profileName,\ wcslen(profileName),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00220\ }
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (category==0)\{\ }
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MessageBoxW(NULL,\ L\textcolor{stringliteral}{"{}Вы\ подключены\ к\ небезопасной\ сети!"{}},\ \ L\textcolor{stringliteral}{"{}Внимание"{}},\ MB\_OK\ |\ MB\_ICONINFORMATION);}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wcsncpy(lastProfile,\ profileName,\ 255);}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ read\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_FILE\_NOT\_FOUND)\ \{}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}DateLastConnected\ not\ found\ for\ profile:\ "{}}\ <<\ profileName\ <<\ std::endl;}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ query\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<L\textcolor{stringliteral}{"{}Error"{}}<<std::endl;}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegCloseKey(hSubKey);}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ index++;}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ cbName\ =\ 255;}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}},\ wcslen(L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}}),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ lastProfile,\ wcslen(lastProfile),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ std::wcout\ <<L\textcolor{stringliteral}{"{}Last\ Category:\ "{}}<<\ lastCategory\ <<\ std::endl;}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ RegCloseKey(hKey);}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ myFile\ <<\ lastCategory;}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ myFile.close();}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(10));}
-\DoxyCodeLine{00256\ \ \ \ \ \}}
-\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00258\ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ year\ =\ int(dateData[0]+dateData[1]*256);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month\ =\ int(dateData[2]+dateData[3]*256);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ int(dateData[6]+dateData[7]*256);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hour\ =\ int(dateData[8]+dateData[9]*256);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minute\ =\ int(dateData[10]+dateData[11]*256);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\ =\ int(dateData[12]+dateData[13]*256);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ date\ =\ makeTimePoint(year,month,day,hour,minute,second);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ category;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegQueryValueExW(hSubKey,\ L\textcolor{stringliteral}{"{}Category"{}},\ NULL,\ \&type,\ (LPBYTE)\&category,\ \&cbData);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (date>lastDate\ or\ (wcscmp(profileName,lastProfile)==0\ and\ category!=lastCategory))\{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastDate=date;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastCategory=category;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}Changed\ Profile\ Name:\ "{}},\ 22,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ profileName,\ wcslen(profileName),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (category==0)\{\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateThread(NULL,\ 0,\ ShowUnsafeNetworkWarning,\ NULL,\ 0,\ NULL);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wcsncpy(lastProfile,\ profileName,\ 255);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ read\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ ==\ ERROR\_FILE\_NOT\_FOUND)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}DateLastConnected\ not\ found\ for\ profile:\ "{}}\ <<\ profileName\ <<\ std::endl;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<\ L\textcolor{stringliteral}{"{}Failed\ to\ query\ DateLastConnected.\ Error\ code:\ "{}}\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::wcerr\ <<L\textcolor{stringliteral}{"{}Error"{}}<<std::endl;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegCloseKey(hSubKey);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ cbName\ =\ 255;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}},\ wcslen(L\textcolor{stringliteral}{"{}LastProfile\ Name:\ "{}}),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ lastProfile,\ wcslen(lastProfile),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ WriteConsoleW(hConsole,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ std::wcout\ <<L\textcolor{stringliteral}{"{}Last\ Category:\ "{}}<<\ lastCategory\ <<\ std::endl;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ RegCloseKey(hKey);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ myFile\ <<\ lastCategory;}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ myFile.close();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(10));}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00269\ \}}
 
 \end{DoxyCode}
 \index{code.cpp@{code.cpp}!InitTray@{InitTray}}
@@ -216,55 +217,55 @@ int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 Запускает функцию для создания иконки на панели задач. ~\newline
 Запускает поток проверки подключения. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00269\ \{}
-\DoxyCodeLine{00270\ \ \ \ \ startup();}
-\DoxyCodeLine{00271\ \ \ \ \ }
-\DoxyCodeLine{00272\ \ \ \ \ }
-\DoxyCodeLine{00273\ \ \ \ \ WNDCLASSEXW\ wc\ =\ \{0\};}
-\DoxyCodeLine{00274\ \ \ \ \ wc.cbSize\ =\ \textcolor{keyword}{sizeof}(WNDCLASSEXW);}
-\DoxyCodeLine{00275\ \ \ \ \ wc.lpfnWndProc\ =\ WndProc;}
-\DoxyCodeLine{00276\ \ \ \ \ wc.hInstance\ =\ GetModuleHandleW(NULL);}
-\DoxyCodeLine{00277\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ }
-\DoxyCodeLine{00278\ \ \ \ \ RegisterClassExW(\&wc);}
-\DoxyCodeLine{00279\ }
-\DoxyCodeLine{00280\ \ \ \ \ hwnd\ =\ CreateWindowW(L\textcolor{stringliteral}{"{}TrayAppClass"{}},\ L\textcolor{stringliteral}{"{}TrayApp"{}},\ WS\_OVERLAPPEDWINDOW,}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ NULL,\ NULL,\ wc.hInstance,\ NULL);}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (!hwnd)\ \{}
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ creating\ icon!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00286\ \ \ \ \ \}}
-\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00289\ \ \ \ \ }
-\DoxyCodeLine{00290\ \ \ \ \ InitTray(hwnd);}
-\DoxyCodeLine{00291\ }
-\DoxyCodeLine{00292\ \ \ \ \ std::thread\ cwrThread(check\_win\_registry);}
-\DoxyCodeLine{00293\ \ \ \ \ }
-\DoxyCodeLine{00294\ \ \ \ \ MessageBoxW(NULL,\ }
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Приложение\ запущено!"{}},\ \ }
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Успешно"{}},\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONINFORMATION);}
-\DoxyCodeLine{00298\ \ \ \ \ }
-\DoxyCodeLine{00299\ \ \ \ \ }
-\DoxyCodeLine{00300\ \ \ \ \ MSG\ msg;}
-\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{while}\ (GetMessageW(\&msg,\ NULL,\ 0,\ 0))\ \{}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ TranslateMessage(\&msg);}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ DispatchMessage(\&msg);}
-\DoxyCodeLine{00304\ \ \ \ \ \}}
-\DoxyCodeLine{00305\ }
-\DoxyCodeLine{00306\ \ \ \ \ }
-\DoxyCodeLine{00307\ \ \ \ \ RemoveTray(hwnd);}
-\DoxyCodeLine{00308\ \ \ \ \ cwrThread.join();}
+\DoxyCodeLine{00280\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ startup();}
+\DoxyCodeLine{00282\ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ }
+\DoxyCodeLine{00284\ \ \ \ \ WNDCLASSEXW\ wc\ =\ \{0\};}
+\DoxyCodeLine{00285\ \ \ \ \ wc.cbSize\ =\ \textcolor{keyword}{sizeof}(WNDCLASSEXW);}
+\DoxyCodeLine{00286\ \ \ \ \ wc.lpfnWndProc\ =\ WndProc;}
+\DoxyCodeLine{00287\ \ \ \ \ wc.hInstance\ =\ GetModuleHandleW(NULL);}
+\DoxyCodeLine{00288\ \ \ \ \ wc.lpszClassName\ =\ L\textcolor{stringliteral}{"{}TrayAppClass"{}};\ }
+\DoxyCodeLine{00289\ \ \ \ \ RegisterClassExW(\&wc);}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ hwnd\ =\ CreateWindowW(L\textcolor{stringliteral}{"{}TrayAppClass"{}},\ L\textcolor{stringliteral}{"{}TrayApp"{}},\ WS\_OVERLAPPEDWINDOW,}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ NULL,\ NULL,\ wc.hInstance,\ NULL);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{if}\ (!hwnd)\ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ creating\ icon!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ }
+\DoxyCodeLine{00301\ \ \ \ \ InitTray(hwnd);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ std::thread\ cwrThread(check\_win\_registry);}
+\DoxyCodeLine{00304\ \ \ \ \ }
+\DoxyCodeLine{00305\ \ \ \ \ MessageBoxW(NULL,\ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Приложение\ запущено!"{}},\ \ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Успешно"{}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONINFORMATION\ |\ MB\_SYSTEMMODAL);}
 \DoxyCodeLine{00309\ \ \ \ \ }
-\DoxyCodeLine{00310\ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
-\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ myFile\ <<\ \textcolor{stringliteral}{"{}1"{}};}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ myFile.close();}
-\DoxyCodeLine{00314\ \ \ \ \ \}}
-\DoxyCodeLine{00315\ \ \ \ \ }
-\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00317\ \}}
+\DoxyCodeLine{00310\ \ \ \ \ }
+\DoxyCodeLine{00311\ \ \ \ \ MSG\ msg;}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{while}\ (GetMessageW(\&msg,\ NULL,\ 0,\ 0))\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ TranslateMessage(\&msg);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ DispatchMessage(\&msg);}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ }
+\DoxyCodeLine{00318\ \ \ \ \ RemoveTray(hwnd);}
+\DoxyCodeLine{00319\ \ \ \ \ cwrThread.join();}
+\DoxyCodeLine{00320\ \ \ \ \ }
+\DoxyCodeLine{00321\ \ \ \ \ std::ofstream\ myFile(\textcolor{stringliteral}{"{}./is\_threat"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keywordflow}{if}\ (myFile.is\_open())\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ myFile\ <<\ \textcolor{stringliteral}{"{}1"{}};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ myFile.close();}
+\DoxyCodeLine{00325\ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00328\ \}}
 
 \end{DoxyCode}
 \index{code.cpp@{code.cpp}!makeTimePoint@{makeTimePoint}}
@@ -305,6 +306,25 @@ void Remove\+Tray (\begin{DoxyParamCaption}\item[{HWND}]{hwnd}{}\end{DoxyParamCa
 \DoxyCodeLine{00115\ \ \ \ \ nid.uID\ =\ ID\_TRAY\_APP\_ICON;}
 \DoxyCodeLine{00116\ \ \ \ \ Shell\_NotifyIcon(NIM\_DELETE,\ \&nid);}
 \DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}
+\index{code.cpp@{code.cpp}!ShowUnsafeNetworkWarning@{ShowUnsafeNetworkWarning}}
+\index{ShowUnsafeNetworkWarning@{ShowUnsafeNetworkWarning}!code.cpp@{code.cpp}}
+\doxysubsubsection{ShowUnsafeNetworkWarning()}
+{\footnotesize\ttfamily \label{code_8cpp_ac3a927dbeff99d01cd8df2a865dd997c} 
+DWORD WINAPI Show\+Unsafe\+Network\+Warning (\begin{DoxyParamCaption}\item[{LPVOID}]{lp\+Param}{}\end{DoxyParamCaption})}
+
+
+
+Отображение Message\+Box. 
+
+Так-\/как создание Message\+Box останавливает процесс выполнения программы, ~\newline
+ создаётся отдельный поток для предотвращения этого. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ MessageBoxW(NULL,\ L\textcolor{stringliteral}{"{}Вы\ подключены\ к\ небезопасной\ сети!"{}},\ \ L\textcolor{stringliteral}{"{}Внимание"{}},\ MB\_OK\ |\ MB\_ICONWARNING\ |\ MB\_SYSTEMMODAL);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00155\ \}}
 
 \end{DoxyCode}
 \index{code.cpp@{code.cpp}!startup@{startup}}

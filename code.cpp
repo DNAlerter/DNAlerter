@@ -144,6 +144,18 @@ std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day
 }
 
 /*!
+\brief Отображение MessageBox
+
+Так-как создание MessageBox останавливает процесс выполнения программы, \n создаётся отдельный поток для предотвращения этого.
+*/
+DWORD WINAPI ShowUnsafeNetworkWarning(LPVOID lpParam) 
+{
+	MessageBoxW(NULL, L"Вы подключены к небезопасной сети!",  L"Внимание", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
+    return 0;
+}
+
+
+/*!
 \brief Получение профиля сети
 
 Каждые десять секунд сканирует реестр виндовс \n
@@ -217,9 +229,8 @@ int check_win_registry()
 								WriteConsoleW(hConsole, L"Changed Profile Name: ", 22, nullptr, nullptr);
 								WriteConsoleW(hConsole, profileName, wcslen(profileName), nullptr, nullptr);
 								WriteConsoleW(hConsole, "\n", 1, nullptr, nullptr);
-
 								if (category==0){ 
-									MessageBoxW(NULL, L"Вы подключены к небезопасной сети!",  L"Внимание", MB_OK | MB_ICONINFORMATION);
+									CreateThread(NULL, 0, ShowUnsafeNetworkWarning, NULL, 0, NULL);
 								}
 								wcsncpy(lastProfile, profileName, 255);
 							}
@@ -294,7 +305,7 @@ int main()
 	MessageBoxW(NULL, 
                L"Приложение запущено!",  
                L"Успешно",         
-               MB_OK | MB_ICONINFORMATION);
+               MB_OK | MB_ICONINFORMATION | MB_SYSTEMMODAL);
 	
     
     MSG msg;

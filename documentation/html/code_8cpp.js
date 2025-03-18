@@ -5,6 +5,7 @@ var code_8cpp =
     [ "main", "code_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
     [ "makeTimePoint", "code_8cpp.html#a54c2e00181a7271993b06261a4126e5e", null ],
     [ "RemoveTray", "code_8cpp.html#a6f4c672b383ffe09c7cdafab1bcd978b", null ],
+    [ "ShowUnsafeNetworkWarning", "code_8cpp.html#ac3a927dbeff99d01cd8df2a865dd997c", null ],
     [ "startup", "code_8cpp.html#a342f2b246cde3f4ca5814a328fdae6d3", null ],
     [ "WndProc", "code_8cpp.html#a72cc05e3935370a6baf8c76645b5a43b", null ]
 ];
