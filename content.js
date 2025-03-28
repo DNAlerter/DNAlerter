@@ -29,7 +29,7 @@ async function AlertIfFound(isFound) {
     if (isFound){
 		const content = await readExtensionFile('is_threat');
 		if (content=='0'){
-			alert('ВЫ ПОДКЛЮЧЕНЫ К НЕБЕЗОПАСНОЙ СЕТИ, ЕСТЬ РИСК ПОТЕРИ ПЕРСОНАЛЬНЫХ ДАННЫХ');
+			alert('Вы подключены к небезопасной сети, есть риск потери персональных данных');
 		}
 	}
 }
