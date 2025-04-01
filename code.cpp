@@ -168,6 +168,8 @@ int check_win_registry()
 	WCHAR lastProfile[255] = L"None";
 	auto lastDate = makeTimePoint(0,0,0,0,0,0);
 	int lastCategory = 0;
+	
+	int c=0;
 	while (running){
 		DWORD index = 0;
 		WCHAR subKeyName[255];
@@ -229,7 +231,7 @@ int check_win_registry()
 								WriteConsoleW(hConsole, L"Changed Profile Name: ", 22, nullptr, nullptr);
 								WriteConsoleW(hConsole, profileName, wcslen(profileName), nullptr, nullptr);
 								WriteConsoleW(hConsole, "\n", 1, nullptr, nullptr);
-								if (category==0){ 
+								if (category==0 && c>0){ 
 									CreateThread(NULL, 0, ShowUnsafeNetworkWarning, NULL, 0, NULL);
 								}
 								wcsncpy(lastProfile, profileName, 255);
@@ -250,7 +252,13 @@ int check_win_registry()
 			}
 			index++;
 			cbName = 255;
+			
 		}
+		
+		if (lastCategory==0 && c==0){ 
+			CreateThread(NULL, 0, ShowUnsafeNetworkWarning, NULL, 0, NULL);
+		}
+		
 		WriteConsoleW(hConsole, L"LastProfile Name: ", wcslen(L"LastProfile Name: "), nullptr, nullptr);
 		WriteConsoleW(hConsole, lastProfile, wcslen(lastProfile), nullptr, nullptr);
 		WriteConsoleW(hConsole, "\n", 1, nullptr, nullptr);
@@ -263,6 +271,8 @@ int check_win_registry()
 			myFile << lastCategory;
 			myFile.close();
 		}
+		
+		c+=1;
 		std::this_thread::sleep_for(std::chrono::seconds(10));
 	}
     return 0;
