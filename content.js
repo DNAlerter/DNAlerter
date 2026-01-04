@@ -1,39 +1,80 @@
-const wordsToCheck = ['пароль', 'password'];
-const pageContent = document.documentElement.innerHTML.toLowerCase();
-let anythingFound = false;
+let isPublicNetwork = false;
+let networkChecked = false;
+let alertShown = false;
 
-async function readExtensionFile(filePath) {
+async function getNetworkStatus() {
+    if (networkChecked) return;
     try {
-        const response = await fetch(chrome.runtime.getURL(filePath));
-        const contents = await response.text();
-        console.log('File contents:', contents);
-        return contents;
-    } catch (error) {
-        console.error('Error reading file:', error);
+        const resp = await fetch(chrome.runtime.getURL('is_threat'));
+        console.log(chrome.runtime.getURL('is_threat'));
+        console.log(resp);
+        const text = await resp.text();
+        isPublicNetwork = (text.trim() === '0');
+        networkChecked = true;
+    } catch (e) {
+        isPublicNetwork = false;
     }
 }
 
+function hasSensitiveInput() {
+    const inputs = document.querySelectorAll('input');
+    const keywords = ['login', 'email', 'phone', 'tel', 'pass', 'password', 'телефон', 'логин', 'почта'];
 
-wordsToCheck.forEach(word => {
-  let isFound = false;
-  
-    
-  const wordBoundaryRegex = new RegExp(`\\b${word}\\b`, 'g');
-  const attributeRegex = new RegExp(`${word}\\s*=`, 'g');
-  isFound = wordBoundaryRegex.test(pageContent) || attributeRegex.test(pageContent);
-  if (isFound) {
-    anythingFound = true;
-  }
-});
+    for (const input of inputs) {
+        const attrs = [
+            input.name || '',
+            input.id || '',
+            input.placeholder || '',
+            input.getAttribute('aria-label') || '',
+            input.getAttribute('data-testid') || ''
+        ].join(' ').toLowerCase();
 
-
-async function AlertIfFound(isFound) {
-    if (isFound){
-		const content = await readExtensionFile('is_threat');
-		if (content=='0'){
-			alert('Вы подключены к небезопасной сети, есть риск потери персональных данных');
-		}
-	}
+        if (keywords.some(word => attrs.includes(word))) {
+            return true;
+        }
+    }
+    return false;
 }
 
-AlertIfFound(anythingFound)
+async function protectPage() {
+    await getNetworkStatus();
+
+    if (!isPublicNetwork) return;
+
+    let sensitive = hasSensitiveInput();
+
+    if (sensitive && !alertShown) {
+        alert('⚠️ Внимание!\nВы в общедоступной Wi-Fi сети.\nНе вводите личные данные!');
+        alertShown = true;
+    }
+
+    if (sensitive) {
+        const inputs = document.querySelectorAll('input, textarea');
+
+        inputs.forEach(field => {
+            if (field.type === 'hidden' || field.type === 'submit' || field.type === 'button' || 
+                field.type === 'checkbox' || field.type === 'radio') {
+                return;
+            }
+
+            field.disabled = true;
+            field.readOnly = true;
+
+            if (field.type === 'password') {
+                field.type = 'text';
+            }
+
+            field.value = 'Сеть небезопасна! Не вводите данные';
+
+            field.style.color = '#d32f2f';
+            field.style.fontWeight = 'bold';
+            field.style.backgroundColor = '#ffebee';
+            field.style.fontSize = '16px';
+        });
+    }
+}
+
+const observer = new MutationObserver(protectPage);
+
+protectPage();
+observer.observe(document.body, { childList: true, subtree: true });

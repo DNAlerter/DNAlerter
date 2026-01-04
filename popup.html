@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {font-family:system-ui,sans-serif;padding:12px;width:320px;margin:0;background:#fff}
+    h3{margin:0 0 10px;font-size:15px}
+    ul{max-height:400px;overflow-y:auto;padding-left:18px;margin:8px 0}
+    li{margin:4px 0;font-size:14px}
+    button{width:100%;padding:10px;margin-top:10px;background:#1976d2;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer}
+    button:hover{background:#1565c0}
+    button:disabled{background:#999;cursor:not-allowed}
+    .status{font-size:12px;color:#666;text-align:center;margin-top:8px}
+  </style>
+</head>
+<body>
+  <h3>Заблокированные сайты (auth/token):</h3>
+  <ul id="list"></ul>
+  <button id="scanNow">Проверить куки</button>
+  <div class="status" id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
