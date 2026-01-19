@@ -30,22 +30,21 @@ async function updateBlocking() {
 
   const cookies = await chrome.cookies.getAll({});
   const blocked = new Set();
-
+  const SENSITIVE_NAMES = new Set("session,sessionid,sid,s,connect.sid,jsessionid,phpsessid,laravel_session,ci_session,next-auth.session-token,__secure-next-auth.session-token,__host-next-auth.session-token,authjs.session-token,__session,sb-access-token,sb-refresh-token,mspauth,mspauth1,mscc,wlid,wlidperf,nap,anon,asp.net_sessionid,.aspxauth,wordpress_logged_in_,token,access_token,refresh_token,id_token,jwt,bearer,auth_token,authtoken,user_session,auth_session,login_token,session_token,authorization,remember_token,vercel_jwt,__host-session,__secure-session,xsrf-token,csrftoken,_rails_session,_gitlab_session,gitlab_user,sp_dc,sp_key,token_v2,nf_jwt,nf_session,adobeid,cake,canva_session,trello_session,asana_session,zm_chtaid,cred,d,slack_session,customer_session,xman_us_f,ka_session,jwt_token,proton_session,auth_session_id,_shopify_s,_shopify_y,airtable_session,__host-figma_session".split(","));
   for (const c of cookies) {
     const nameLower = c.name.toLowerCase();
-
+    
     if (
-      nameLower === "session" ||
-      nameLower === "sessionid" ||
-      nameLower === "auth" ||
-      nameLower === "auth_token" ||
-      nameLower === "access_token" ||
-      nameLower === "refresh_token" ||
-      nameLower === "jwt" ||
-      nameLower === "bearer" ||
-      nameLower === "phpsessid" ||
-      nameLower === "laravel_session" ||
-      nameLower === "ci_session"
+      SENSITIVE_NAMES.has(nameLower) ||                    
+      nameLower.startsWith("_gitlab") ||
+      nameLower.startsWith("sp_") ||                      
+      nameLower.startsWith("nf_") ||                        
+      nameLower.startsWith("zm_") ||                          
+      nameLower.startsWith("token_v") ||                         
+      nameLower.startsWith("ka_") ||                            
+      nameLower.startsWith("duo") ||
+      nameLower.startsWith("_shopify") ||
+      nameLower.includes("session") || nameLower.includes("auth")
     ) {
       if (c.expirationDate) {
         let domain = c.domain;
