@@ -1,4 +1,0 @@
-#define IDI_MYICON 101
-IDI_MYICON ICON "icon.ico"
-
-1 MANIFEST "manifest.exe.manifest"

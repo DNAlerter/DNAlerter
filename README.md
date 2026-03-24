@@ -1,2 +1,2 @@
 # DNAlerter
- Оповещение о небезопасном подключении к сети
+ Protecting from insecure wifi networks
