@@ -2,13 +2,20 @@ const BLOCKED_KEY = "blocked_domains";
 const SERVER_PORT = 4756;
 
 async function isPublicNetwork() {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10);
+  
   try {
-    const response = await fetch(`http://127.0.0.1:${SERVER_PORT}/is_threat`);
+    const response = await fetch(`http://127.0.0.1:${SERVER_PORT}/is_threat`, {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    
     if (!response.ok) return false;
     const text = await response.text();
     return text.trim() === '0';
   } catch (e) {
-    console.error("DNAlerter: не удалось прочитать is_threat", e);
+    clearTimeout(timeoutId);
     return true;
   }
 }

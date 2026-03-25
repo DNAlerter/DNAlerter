@@ -1,12 +1,9 @@
-let isPublicNetwork = false;
-let networkChecked = false;
 let alertShown = false;
 
 const SERVER_PORT = 4756;
 
-async function getNetworkStatus() {
-    if (networkChecked) return;
 
+async function getNetworkStatus() {
     try {
         const response = await chrome.runtime.sendMessage({ action: "getNetworkStatus" });
         isPublicNetwork = response.isPublic;
@@ -14,8 +11,6 @@ async function getNetworkStatus() {
         console.error("Не удалось получить статус сети из background", e);
         isPublicNetwork = false;
     }
-
-    networkChecked = true;
 }
 function hasSensitiveInput() {
     const inputs = document.querySelectorAll('input');

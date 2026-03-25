@@ -51,7 +51,6 @@ int startup()
 }
 
 /*!
-\brief Function to shut down the program if the "Exit" button is pressed
 Function to shut down the program if the "Exit" button is pressed
 */
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -110,7 +109,6 @@ void InitTray(HWND hwnd)
 }
 
 /*!
-\brief Removes the tray icon when the program exits
 Removes the tray icon when the program exits
 */
 void RemoveTray(HWND hwnd)
@@ -123,7 +121,6 @@ void RemoveTray(HWND hwnd)
 }
 
 /*!
-\brief time format converter
 Takes year, month, day, hour, minute, and second as numbers \n
 And converts them to time format
 */
@@ -141,7 +138,6 @@ std::chrono::system_clock::time_point makeTimePoint(int year, int month, int day
 }
 
 /*!
-\brief Display MessageBox
 Since creating a MessageBox stops the program execution, \n a separate thread is created to prevent this.
 */
 DWORD WINAPI ShowUnsafeNetworkWarning(LPVOID lpParam)
@@ -317,7 +313,6 @@ int check_win_registry()
 
 
 /*!
-\brief Main function
 Starts the function to create a tray icon. \n
 Starts the connection monitoring thread and HTTP server.
 */
