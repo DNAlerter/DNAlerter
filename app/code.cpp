@@ -1,12 +1,15 @@
 #include <winsock2.h>
-#include <ws2tcpip.h>
 #include <windows.h>
+#include <initguid.h>
+#include <taskschd.h>
+#include <comdef.h>
 #include <iostream>
 #include <thread>
-#include <fstream>
 #include <atomic>
 #include <string>
 
+#pragma comment(lib, "taskschd.lib")
+#pragma comment(lib, "ws2_32.lib")
 
 #define IDI_MYICON 101
 #define ID_TRAY_APP_ICON 1
@@ -26,28 +29,80 @@ Opens the Windows registry and checks the type of network to which the last conn
 /*!
 Adds the program path to the Windows startup list
 */
-int startup()
+
+void startup()
 {
+    CoInitializeEx(NULL, COINIT_MULTITHREADED);
+    
+    ITaskService* pService = NULL;
+    CoCreateInstance(CLSID_TaskScheduler, NULL, CLSCTX_INPROC_SERVER, IID_ITaskService, (void**)&pService);
+    pService->Connect(_variant_t(), _variant_t(), _variant_t(), _variant_t());
+    
+    ITaskFolder* pRootFolder = NULL;
+    pService->GetFolder(_bstr_t(L"\\"), &pRootFolder);
+    
+    IRegisteredTask* pExistingTask = NULL;
+    if (pRootFolder->GetTask(_bstr_t(L"DNAlereter"), &pExistingTask) == S_OK) {
+        pExistingTask->Release();
+        pRootFolder->Release();
+        pService->Release();
+        CoUninitialize();
+        return;
+    }
+    
     wchar_t path[MAX_PATH];
     GetModuleFileNameW(NULL, path, MAX_PATH);
-    std::wstring progPath = path;
-    HKEY hkey = NULL;
-    LONG createStatus = RegCreateKeyW(HKEY_CURRENT_USER,
-                                     L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
-                                     &hkey);
-   
-    if (createStatus == ERROR_SUCCESS) {
-        LONG status = RegSetValueExW(hkey,
-                                    L"DNAlert",
-                                    0,
-                                    REG_SZ,
-                                    (BYTE*)progPath.c_str(),
-                                    (progPath.size() + 1) * sizeof(wchar_t));
-       
-        RegCloseKey(hkey);
-    }
-   
-    return 0;
+    
+    ITaskDefinition* pTaskDef = NULL;
+    pService->NewTask(0, &pTaskDef);
+    
+    IPrincipal* pPrincipal = NULL;
+    pTaskDef->get_Principal(&pPrincipal);
+    pPrincipal->put_LogonType(TASK_LOGON_INTERACTIVE_TOKEN);
+    pPrincipal->put_RunLevel(TASK_RUNLEVEL_HIGHEST);
+    pPrincipal->Release();
+    
+    ITriggerCollection* pTriggers = NULL;
+    pTaskDef->get_Triggers(&pTriggers);
+    
+    ITrigger* pTrigger = NULL;
+    pTriggers->Create(TASK_TRIGGER_LOGON, &pTrigger);
+    
+    ILogonTrigger* pLogonTrigger = NULL;
+    pTrigger->QueryInterface(IID_ILogonTrigger, (void**)&pLogonTrigger);
+    pLogonTrigger->Release();
+    pTrigger->Release();
+    pTriggers->Release();
+    
+    IActionCollection* pActions = NULL;
+    pTaskDef->get_Actions(&pActions);
+    
+    IAction* pAction = NULL;
+    pActions->Create(TASK_ACTION_EXEC, &pAction);
+    
+    IExecAction* pExecAction = NULL;
+    pAction->QueryInterface(IID_IExecAction, (void**)&pExecAction);
+    pExecAction->put_Path(_bstr_t(path));
+    pExecAction->Release();
+    pAction->Release();
+    pActions->Release();
+    
+    IRegisteredTask* pRegisteredTask = NULL;
+    pRootFolder->RegisterTaskDefinition(
+        _bstr_t(L"DNAlereter"),
+        pTaskDef,
+        TASK_CREATE_OR_UPDATE,
+        _variant_t(),
+        _variant_t(),
+        TASK_LOGON_INTERACTIVE_TOKEN,
+        _variant_t(),
+        &pRegisteredTask);
+    
+    if (pRegisteredTask) pRegisteredTask->Release();
+    pTaskDef->Release();
+    pRootFolder->Release();
+    pService->Release();
+    CoUninitialize();
 }
 
 /*!
